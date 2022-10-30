@@ -20,11 +20,6 @@ public class ModeloUsuario implements IModeloUsuario{
     }
 
     @Override
-    public void conexionBD() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Usuario consultar(String idUsuario) {
         EntityManager em = this.conexionBD.crearConexion();
         try
@@ -40,17 +35,47 @@ public class ModeloUsuario implements IModeloUsuario{
     }
 
     @Override
-    public void actualizar(String idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean actualizar(String idUsuario) {
+        EntityManager em = this.conexionBD.crearConexion();
+        Usuario usuario = this.consultar(idUsuario);
+        if (usuario != null) {
+            try {
+                em.getTransaction().begin();
+                em.persist(usuario);
+                em.getTransaction().commit();
+                return true;
+            } catch (IllegalStateException e) {
+                System.err.println("No se pudo agregar el usuario");
+                e.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void eliminar(String idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean eliminar(String idUsuario) {
+        EntityManager em = this.conexionBD.crearConexion();
+        Usuario usuario = this.consultar(idUsuario);
+        if (usuario != null) {
+            try {
+                em.getTransaction().begin();
+                em.remove(usuario);
+                em.getTransaction().commit();
+                return true;
+            } catch (IllegalStateException e) {
+                System.err.println("No se pudo agregar el usuario");
+                e.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public Boolean registrar(Usuario usuario) {
+    public boolean registrar(Usuario usuario) {
         EntityManager em = this.conexionBD.crearConexion();
         
         try

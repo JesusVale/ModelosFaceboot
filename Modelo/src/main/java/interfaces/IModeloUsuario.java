@@ -11,9 +11,8 @@ import entidades.Usuario;
  * @author tonyd
  */
 public interface IModeloUsuario {
-    public void conexionBD();
     public Usuario consultar(String idUsuario);
-    public void actualizar(String idUsuario);
-    public void eliminar(String idUsuario);
-    public Boolean registrar(Usuario usuario);
+    public boolean actualizar(String idUsuario);
+    public boolean eliminar(String idUsuario);
+    public boolean registrar(Usuario usuario);
 }
