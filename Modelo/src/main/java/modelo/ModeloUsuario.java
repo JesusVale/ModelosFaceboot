@@ -77,9 +77,11 @@ public class ModeloUsuario implements IModeloUsuario{
     @Override
     public boolean registrar(Usuario usuario) {
         EntityManager em = this.conexionBD.crearConexion();
+        System.out.println("registrar entro");
         
         try
         {
+            System.out.println("entro try registrar");
            em.getTransaction().begin();
            em.persist(usuario);
            em.getTransaction().commit();
