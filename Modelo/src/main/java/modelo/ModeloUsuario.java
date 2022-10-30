@@ -28,7 +28,7 @@ public class ModeloUsuario implements IModeloUsuario{
         }
         catch(IllegalStateException e)
         {
-            System.err.println("No se pudo consultar el cliente" + idUsuario);
+            System.err.println("No se pudo consultar el usuario" + idUsuario);
             e.printStackTrace();
             return null;
         }
@@ -45,7 +45,7 @@ public class ModeloUsuario implements IModeloUsuario{
                 em.getTransaction().commit();
                 return true;
             } catch (IllegalStateException e) {
-                System.err.println("No se pudo agregar el usuario");
+                System.err.println("No se pudo actualizar el usuario");
                 e.printStackTrace();
                 return false;
             }
@@ -65,7 +65,7 @@ public class ModeloUsuario implements IModeloUsuario{
                 em.getTransaction().commit();
                 return true;
             } catch (IllegalStateException e) {
-                System.err.println("No se pudo agregar el usuario");
+                System.err.println("No se pudo eliminar el usuario");
                 e.printStackTrace();
                 return false;
             }
