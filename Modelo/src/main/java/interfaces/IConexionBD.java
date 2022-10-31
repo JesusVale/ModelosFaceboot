@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 /**
  *

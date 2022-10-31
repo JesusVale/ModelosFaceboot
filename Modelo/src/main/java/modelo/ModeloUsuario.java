@@ -6,7 +6,7 @@ package modelo;
 import entidades.Usuario;
 import interfaces.IConexionBD;
 import interfaces.IModeloUsuario;
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 /**
  *
  * @author tonyd
@@ -81,9 +81,10 @@ public class ModeloUsuario implements IModeloUsuario{
         
         try
         {
-            System.out.println("entro try registrar");
+           System.out.println("entro try registrar");
            em.getTransaction().begin();
            em.persist(usuario);
+            System.out.println("agregado");
            em.getTransaction().commit();
            return true;
         }
