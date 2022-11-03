@@ -84,7 +84,7 @@ public class ModeloUsuario implements IModeloUsuario{
            System.out.println("entro try registrar");
            em.getTransaction().begin();
            em.persist(usuario);
-            System.out.println("agregado");
+           System.out.println("agregado");
            em.getTransaction().commit();
            return true;
         }
