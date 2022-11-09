@@ -3,5 +3,4 @@ interfaces\IModeloPublicacion.class
 modelo\ClienteModelo.class
 modelo\FachadaComunicacionVista.class
 modelo\ConexionBD.class
-modelo\ModeloUsuario.class
 interfaces\IConexionBD.class

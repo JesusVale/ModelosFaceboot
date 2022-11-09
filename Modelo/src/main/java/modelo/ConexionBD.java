@@ -14,12 +14,25 @@ import jakarta.persistence.Persistence;
  * @author tonyd
  */
 public class ConexionBD implements IConexionBD{
+    
+    private static ConexionBD conexion;
+    private EntityManager manejadorEntidades;
+    
+    public static ConexionBD getInstance(){
+        if(conexion == null){
+            conexion = new ConexionBD();
+        }
+        return conexion;
+    }
+    
     @Override
     public EntityManager crearConexion() throws IllegalStateException {
-        //Obtiene acceso alemFactory a partir de la persistence unit utilizada
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("facebootPU"); 
-        // Creamos una em(bd) para realizar operaciones con la bd
-        EntityManager em = emFactory.createEntityManager();
-        return em;
+        if(manejadorEntidades == null){
+            //Obtiene acceso alemFactory a partir de la persistence unit utilizada
+            EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("facebootPU"); 
+            // Creamos una em(bd) para realizar operaciones con la bd
+            manejadorEntidades = emFactory.createEntityManager();
+        }
+        return manejadorEntidades;
     }
 }

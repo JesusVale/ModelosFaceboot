@@ -13,10 +13,10 @@ import jakarta.persistence.EntityManager;
  */
 public class ModeloUsuario implements IModeloUsuario{
     private final IConexionBD conexionBD;
-    
+
     public ModeloUsuario(IConexionBD conexionBD) 
     {
-        this.conexionBD=conexionBD;
+        this.conexionBD = conexionBD;
     }
 
     @Override
@@ -73,28 +73,27 @@ public class ModeloUsuario implements IModeloUsuario{
             return false;
         }
     }
-
+    
     @Override
-    public boolean registrar(Usuario usuario) {
-        EntityManager em = this.conexionBD.crearConexion();
-        System.out.println("registrar entro");
-        
+    public Usuario registrar(Usuario usuario) {
+        EntityManager em = this.conexionBD.crearConexion(); //Establece conexion con la BD
         try
         {
-           System.out.println("entro try registrar");
-           em.getTransaction().begin();
-           em.persist(usuario);
-           System.out.println("agregado");
-           em.getTransaction().commit();
-           return true;
+           em.getTransaction().begin(); //Comienza la Transacción
+           em.persist(usuario); //Agrega el usuario
+           em.getTransaction().commit(); //Termina Transacción
+           return usuario;
         }
-        
         catch(IllegalStateException e)
         {
             System.err.println("No se pudo agregar el usuario");
             e.printStackTrace();
-            return false;
+            return null;
         }
+    }
+    
+    public void existeUsuario(Usuario usuario){
+        
     }
     
 }

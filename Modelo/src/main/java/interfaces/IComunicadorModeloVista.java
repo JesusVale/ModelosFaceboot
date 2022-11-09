@@ -7,12 +7,10 @@ package interfaces;
 import entidades.Usuario;
 
 /**
- *
- * @author tonyd
+ * Intemediario para realizar la comunicación entre el modelo y la vista
+ * @author jegav
  */
-public interface IModeloUsuario {
-    public Usuario consultar(String idUsuario);
-    public boolean actualizar(String idUsuario);
-    public boolean eliminar(String idUsuario);
-    public Usuario registrar(Usuario usuario);
+public interface IComunicadorModeloVista {
+    public void notificarRegistroUsuario(Usuario usuario);
+    public void notificarFalloOperacion(String error, int status);
 }
