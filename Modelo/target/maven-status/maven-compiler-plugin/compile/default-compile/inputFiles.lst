@@ -1,11 +1,11 @@
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloUsuario.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IConexionBD.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloComentario.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelo\ClienteModelo.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloPublicacion.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloPublicacion.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IComunicadorModeloVista.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloUsuario.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelo\FachadaComunicacionVista.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelo\ConexionBD.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloComentario.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloPublicacion.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloUsuario.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloUsuario.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloComentario.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IComunicadorModeloVista.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelo\ClienteModelo.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloPublicacion.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelo\ConexionBD.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IConexionBD.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelo\FachadaComunicacionVista.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloComentario.java

@@ -12,6 +12,7 @@ import entidades.Usuario;
  */
 public interface IModeloUsuario {
     public Usuario consultar(String idUsuario);
+    public Usuario login(Usuario usuario);
     public boolean actualizar(String idUsuario);
     public boolean eliminar(String idUsuario);
     public Usuario registrar(Usuario usuario);

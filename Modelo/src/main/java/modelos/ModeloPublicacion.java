@@ -69,21 +69,22 @@ public class ModeloPublicacion implements IModeloPublicacion{
     }
 
     @Override
-    public boolean registrar(Publicacion publicacion) {
+    public Publicacion registrar(Publicacion publicacion) {
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
            em.getTransaction().begin();
+           System.out.println("Llego xd");
            em.persist(publicacion);
            em.getTransaction().commit();
-           return true;
+           return publicacion;
         }
         
         catch(IllegalStateException e)
         {
             System.err.println("No se pudo agregar la publicacion");
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
     

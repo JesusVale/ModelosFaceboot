@@ -12,5 +12,5 @@ public interface IModeloPublicacion {
     public Publicacion consultar(String idPublicacion);
     public Publicacion actualizar(String idPublicacion);
     public boolean eliminar(String idPublicacion);
-    public boolean registrar(Publicacion publicacion);
+    public Publicacion registrar(Publicacion publicacion);
 }

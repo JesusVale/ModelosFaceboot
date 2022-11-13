@@ -7,6 +7,8 @@ import entidades.Usuario;
 import interfaces.IConexionBD;
 import interfaces.IModeloUsuario;
 import jakarta.persistence.EntityManager;
+import java.util.List;
+import jakarta.persistence.TypedQuery;
 /**
  *
  * @author tonyd
@@ -19,6 +21,25 @@ public class ModeloUsuario implements IModeloUsuario{
         this.conexionBD = conexionBD;
     }
 
+    @Override
+    public Usuario login(Usuario usuario) {
+        EntityManager em = this.conexionBD.crearConexion();
+        try {
+            String jpqlQuery = "SELECT c FROM Usuario c";
+            TypedQuery<Usuario> consulta = em.createQuery(jpqlQuery, Usuario.class);
+            List<Usuario> usuarios = consulta.getResultList();
+            for (Usuario u : usuarios) {
+                if(u.getNombre()==usuario.getNombre() && u.getPassword()==usuario.getPassword()){
+                    return u;
+                }
+            }
+        } catch (IllegalStateException e) {
+            System.err.println("El usuario no existe");
+            e.printStackTrace();
+            return null;
+        }
+        return null;
+    }
     @Override
     public Usuario consultar(String idUsuario) {
         EntityManager em = this.conexionBD.crearConexion();
