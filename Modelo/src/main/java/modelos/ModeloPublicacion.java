@@ -4,10 +4,13 @@
  */
 package modelos;
 
+import comunicacion.ComunicadorServidor;
 import entidades.Publicacion;
 import interfaces.IConexionBD;
 import interfaces.IModeloPublicacion;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import java.util.List;
 
 /**
  *
@@ -15,10 +18,12 @@ import jakarta.persistence.EntityManager;
  */
 public class ModeloPublicacion implements IModeloPublicacion{
     private final IConexionBD conexionBD;
+    private ComunicadorServidor comunicadorServidor;
     
     public ModeloPublicacion(IConexionBD conexionBD) 
     {
         this.conexionBD=conexionBD;
+        comunicadorServidor = new ComunicadorServidor();
     }
 
     @Override
@@ -31,6 +36,22 @@ public class ModeloPublicacion implements IModeloPublicacion{
         catch(IllegalStateException e)
         {
             System.err.println("No se pudo consultar la publicacion" + idPublicacion);
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    @Override
+    public List<Publicacion> consultarPublicaciones() {
+        EntityManager em = this.conexionBD.crearConexion();
+        try
+        {
+            Query query = em.createQuery("SELECT e FROM publicaciones e");
+           return query.getResultList();
+        }
+        catch(IllegalStateException e)
+        {
+            System.err.println("No se puedieron consultar las publicaciones");
             e.printStackTrace();
             return null;
         }
@@ -77,6 +98,8 @@ public class ModeloPublicacion implements IModeloPublicacion{
            System.out.println("Llego xd");
            em.persist(publicacion);
            em.getTransaction().commit();
+           comunicadorServidor.notificarCambioNuevaPublicacion(this.consultarPublicaciones());
+           //ComunicadorVista.notificarCambios();
            return publicacion;
         }
         
@@ -87,5 +110,7 @@ public class ModeloPublicacion implements IModeloPublicacion{
             return null;
         }
     }
+
+    
     
 }

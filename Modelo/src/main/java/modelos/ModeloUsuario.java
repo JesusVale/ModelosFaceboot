@@ -28,8 +28,13 @@ public class ModeloUsuario implements IModeloUsuario{
             String jpqlQuery = "SELECT c FROM Usuario c";
             TypedQuery<Usuario> consulta = em.createQuery(jpqlQuery, Usuario.class);
             List<Usuario> usuarios = consulta.getResultList();
+            System.out.println("Total de usuarios: "+ usuarios.size());
             for (Usuario u : usuarios) {
-                if(u.getNombre()==usuario.getNombre() && u.getPassword()==usuario.getPassword()){
+                System.out.println(u.getEmail());
+                System.out.println(usuario.getEmail());
+                System.out.println();
+                if(u.getEmail().equals(usuario.getEmail()) && u.getPassword().equals(usuario.getPassword())){
+                    System.out.println(u.getNombre());
                     return u;
                 }
             }
@@ -38,6 +43,7 @@ public class ModeloUsuario implements IModeloUsuario{
             e.printStackTrace();
             return null;
         }
+        System.out.println("Hola El usuario no existe AAAAAAAAAAAAAAAA");
         return null;
     }
     @Override

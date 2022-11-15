@@ -4,6 +4,7 @@
  */
 package interfaces;
 import entidades.Publicacion;
+import java.util.List;
 /**
  *
  * @author tonyd
@@ -13,4 +14,5 @@ public interface IModeloPublicacion {
     public Publicacion actualizar(String idPublicacion);
     public boolean eliminar(String idPublicacion);
     public Publicacion registrar(Publicacion publicacion);
+    public List<Publicacion> consultarPublicaciones();
 }
