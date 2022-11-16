@@ -1,0 +1,27 @@
+<<<<<<< Updated upstream
+<?xml version="1.0" encoding="UTF-8"?>
+=======
+>>>>>>> Stashed changes
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS}|%-5level|%t|%msg%n"/>
+        </Console>
+        <NoSql name="MongoDbAppender">
+            <MongoDb capped="true" collectionSize="104857600"
+                              databaseName="transacciones"
+                              collectionName="logs"
+            />
+        </NoSql>
+    </Appenders>
+    <Loggers>
+<<<<<<< Updated upstream
+        <Root level="ALL">
+=======
+        <Root >
+>>>>>>> Stashed changes
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="MongoDbAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
