@@ -17,6 +17,7 @@ import org.apache.logging.log4j.*;
 public class ModeloUsuario implements IModeloUsuario{
     private static Logger log = LogManager.getLogger(ModeloUsuario.class);
     private final IConexionBD conexionBD;
+    private static Logger log = LogManager.getLogger(ModeloUsuario.class);
 
     public ModeloUsuario(IConexionBD conexionBD) 
     {
@@ -110,7 +111,11 @@ public class ModeloUsuario implements IModeloUsuario{
         {
            em.getTransaction().begin(); //Comienza la Transacción
            em.persist(usuario); //Agrega el usuario
+<<<<<<< Updated upstream
            //log.info("Se registro un usuario");
+=======
+           log.info("Se registro un usuario");
+>>>>>>> Stashed changes
            em.getTransaction().commit(); //Termina Transacción
            return usuario;
         }

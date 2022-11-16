@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
+=======
+>>>>>>> Stashed changes
 <Configuration status="WARN">
     <Appenders>
         <Console name="Console">
@@ -12,7 +15,11 @@
         </NoSql>
     </Appenders>
     <Loggers>
+<<<<<<< Updated upstream
         <Root level="ALL">
+=======
+        <Root >
+>>>>>>> Stashed changes
             <AppenderRef ref="Console"/>
             <AppenderRef ref="MongoDbAppender"/>
         </Root>
