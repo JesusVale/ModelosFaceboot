@@ -9,11 +9,13 @@ import interfaces.IModeloUsuario;
 import jakarta.persistence.EntityManager;
 import java.util.List;
 import jakarta.persistence.TypedQuery;
+import org.apache.logging.log4j.*;
 /**
  *
  * @author tonyd
  */
 public class ModeloUsuario implements IModeloUsuario{
+    private static Logger log = LogManager.getLogger(ModeloUsuario.class);
     private final IConexionBD conexionBD;
 
     public ModeloUsuario(IConexionBD conexionBD) 
@@ -108,6 +110,7 @@ public class ModeloUsuario implements IModeloUsuario{
         {
            em.getTransaction().begin(); //Comienza la Transacción
            em.persist(usuario); //Agrega el usuario
+           //log.info("Se registro un usuario");
            em.getTransaction().commit(); //Termina Transacción
            return usuario;
         }
