@@ -26,6 +26,7 @@ public class ComunicadorServidor {
     
     
     public void notificarCambioNuevaPublicacion(List<Publicacion> publicaciones){
+        System.out.println("Estoy en notificar cambio de nueva publicacion");
         PeticionPublicaciones respuesta = new PeticionPublicaciones(Eventos.registrarPublicacion, 200, publicaciones);
         Server.getInstance().notificarTodos(conversor.convertirObjetoString(respuesta));
     }
