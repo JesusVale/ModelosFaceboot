@@ -7,5 +7,6 @@ interfaces\IComunicadorModeloVista.class
 interfaces\IModeloPublicacion.class
 modelo\ClienteModelo.class
 interfaces\IModeloComentario.class
+comunicacion\ComunicadorServidor.class
 modelos\ModeloUsuario.class
 interfaces\IConexionBD.class

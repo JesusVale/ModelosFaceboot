@@ -46,7 +46,7 @@ public class ModeloPublicacion implements IModeloPublicacion{
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
-            Query query = em.createQuery("SELECT e FROM publicaciones e");
+            Query query = em.createQuery("SELECT e FROM Publicacion e");
            return query.getResultList();
         }
         catch(IllegalStateException e)

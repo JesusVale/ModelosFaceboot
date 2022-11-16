@@ -9,12 +9,14 @@ import interfaces.IModeloUsuario;
 import jakarta.persistence.EntityManager;
 import java.util.List;
 import jakarta.persistence.TypedQuery;
+import org.apache.logging.log4j.*;
 /**
  *
  * @author tonyd
  */
 public class ModeloUsuario implements IModeloUsuario{
     private final IConexionBD conexionBD;
+    private static Logger log = LogManager.getLogger(ModeloUsuario.class);
 
     public ModeloUsuario(IConexionBD conexionBD) 
     {
@@ -30,11 +32,9 @@ public class ModeloUsuario implements IModeloUsuario{
             List<Usuario> usuarios = consulta.getResultList();
             System.out.println("Total de usuarios: "+ usuarios.size());
             for (Usuario u : usuarios) {
-                System.out.println(u.getEmail());
-                System.out.println(usuario.getEmail());
-                System.out.println();
                 if(u.getEmail().equals(usuario.getEmail()) && u.getPassword().equals(usuario.getPassword())){
-                    System.out.println(u.getNombre());
+                    System.out.println(log);
+                    log.info("Inicio sesion "+ u.getEmail());
                     return u;
                 }
             }
