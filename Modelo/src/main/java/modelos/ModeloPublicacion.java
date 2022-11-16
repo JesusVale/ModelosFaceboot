@@ -10,7 +10,6 @@ import interfaces.IConexionBD;
 import interfaces.IModeloPublicacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -47,10 +46,8 @@ public class ModeloPublicacion implements IModeloPublicacion{
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
-           String sqlQuery = "SELECT e FROM Publicacion e";
-           TypedQuery<Publicacion> query = em.createQuery(sqlQuery,Publicacion.class);
-           List<Publicacion> publicaciones = query.getResultList();
-           return publicaciones;
+            Query query = em.createQuery("SELECT e FROM publicaciones e");
+           return query.getResultList();
         }
         catch(IllegalStateException e)
         {
