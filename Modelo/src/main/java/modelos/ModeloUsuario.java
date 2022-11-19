@@ -47,7 +47,7 @@ public class ModeloUsuario implements IModeloUsuario{
         return null;
     }
     @Override
-    public Usuario consultar(String idUsuario) {
+    public Usuario consultar(Long idUsuario) {
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
@@ -62,27 +62,27 @@ public class ModeloUsuario implements IModeloUsuario{
     }
 
     @Override
-    public boolean actualizar(String idUsuario) {
+    public Usuario actualizar(Usuario usuario) {
         EntityManager em = this.conexionBD.crearConexion();
-        Usuario usuario = this.consultar(idUsuario);
-        if (usuario != null) {
+        Usuario usuarioActualizar = this.consultar(usuario.getId());
+        if (usuarioActualizar != null) {
             try {
                 em.getTransaction().begin();
-                em.persist(usuario);
+                em.merge(usuario);
                 em.getTransaction().commit();
-                return true;
+                return usuario;
             } catch (IllegalStateException e) {
                 System.err.println("No se pudo actualizar el usuario");
                 e.printStackTrace();
-                return false;
+                return null;
             }
         } else {
-            return false;
+            return null;
         }
     }
 
     @Override
-    public boolean eliminar(String idUsuario) {
+    public boolean eliminar(Long idUsuario) {
         EntityManager em = this.conexionBD.crearConexion();
         Usuario usuario = this.consultar(idUsuario);
         if (usuario != null) {

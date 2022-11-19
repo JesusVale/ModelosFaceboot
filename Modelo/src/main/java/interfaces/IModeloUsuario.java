@@ -11,9 +11,9 @@ import entidades.Usuario;
  * @author tonyd
  */
 public interface IModeloUsuario {
-    public Usuario consultar(String idUsuario);
+    public Usuario consultar(Long idUsuario);
     public Usuario login(Usuario usuario);
-    public boolean actualizar(String idUsuario);
-    public boolean eliminar(String idUsuario);
+    public Usuario actualizar(Usuario usuario);
+    public boolean eliminar(Long idUsuario);
     public Usuario registrar(Usuario usuario);
 }
