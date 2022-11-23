@@ -14,6 +14,6 @@ public interface IModeloUsuario {
     public Usuario consultar(Long idUsuario);
     public Usuario login(Usuario usuario);
     public Usuario actualizar(Usuario usuario);
-    public boolean eliminar(Long idUsuario);
+    public Usuario eliminar(Long idUsuario);
     public Usuario registrar(Usuario usuario);
 }

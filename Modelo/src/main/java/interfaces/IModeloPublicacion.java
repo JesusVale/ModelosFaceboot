@@ -12,7 +12,7 @@ import java.util.List;
 public interface IModeloPublicacion {
     public Publicacion consultar(String idPublicacion);
     public Publicacion actualizar(String idPublicacion);
-    public boolean eliminar(String idPublicacion);
+    public Publicacion eliminar(String idPublicacion);
     public Publicacion registrar(Publicacion publicacion);
     public List<Publicacion> consultarPublicaciones();
 }

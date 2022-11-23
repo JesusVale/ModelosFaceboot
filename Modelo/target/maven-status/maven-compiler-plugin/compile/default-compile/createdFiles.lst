@@ -1,12 +1,11 @@
 interfaces\IModeloUsuario.class
 modelos\ModeloPublicacion.class
-modelo\FachadaComunicacionVista.class
-modelos\ModeloComentario.class
-modelo\ConexionBD.class
 interfaces\IComunicadorModeloVista.class
 interfaces\IModeloPublicacion.class
-modelo\ClienteModelo.class
+comunicacion\IComunicadorServidor.class
 interfaces\IModeloComentario.class
+modelos\ModeloComentario.class
 comunicacion\ComunicadorServidor.class
+modelo\ConexionBD.class
 modelos\ModeloUsuario.class
 interfaces\IConexionBD.class

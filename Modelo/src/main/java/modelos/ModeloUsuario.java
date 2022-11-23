@@ -83,7 +83,7 @@ public class ModeloUsuario implements IModeloUsuario{
     }
 
     @Override
-    public boolean eliminar(Long idUsuario) {
+    public Usuario eliminar(Long idUsuario) {
         EntityManager em = this.conexionBD.crearConexion();
         Usuario usuario = this.consultar(idUsuario);
         if (usuario != null) {
@@ -91,14 +91,14 @@ public class ModeloUsuario implements IModeloUsuario{
                 em.getTransaction().begin();
                 em.remove(usuario);
                 em.getTransaction().commit();
-                return true;
+                return null;
             } catch (IllegalStateException e) {
                 System.err.println("No se pudo eliminar el usuario");
                 e.printStackTrace();
-                return false;
+                return null;
             }
         } else {
-            return false;
+            return null;
         }
     }
     

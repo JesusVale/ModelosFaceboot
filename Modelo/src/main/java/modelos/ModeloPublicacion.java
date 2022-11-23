@@ -75,18 +75,18 @@ public class ModeloPublicacion implements IModeloPublicacion{
     }
 
     @Override
-    public boolean eliminar(String idPublicacion) {
+    public Publicacion eliminar(String idPublicacion) {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             Publicacion publicacion = this.consultar(idPublicacion);
             em.getTransaction().begin();
             em.remove(publicacion);
             em.getTransaction().commit();
-            return true;
+            return null;
         } catch (IllegalStateException e) {
             System.err.println("No se pudo eliminar la publicacion");
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
