@@ -51,6 +51,7 @@ public class ModeloUsuario implements IModeloUsuario{
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
+            System.out.println("Hola entro");
            return em.find(Usuario.class, idUsuario);
         }
         catch(IllegalStateException e)

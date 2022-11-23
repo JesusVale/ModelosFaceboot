@@ -9,14 +9,13 @@ import conversors.JsonToObject;
 import entidades.Publicacion;
 import eventos.Eventos;
 import java.util.List;
-import peticiones.Peticion;
-import peticiones.PeticionPublicaciones;
+import peticiones.PeticionPublicacion;
 import principales.Server;
 /**
  *
  * @author jegav
  */
-public class ComunicadorServidor {
+public class ComunicadorServidor implements IComunicadorServidor{
     
     public IJsonToObject conversor;
 
@@ -24,10 +23,10 @@ public class ComunicadorServidor {
         this.conversor = new JsonToObject();
     }
     
-    
-    public void notificarCambioNuevaPublicacion(List<Publicacion> publicaciones){
-        System.out.println("Estoy en notificar cambio de nueva publicacion");
-        PeticionPublicaciones respuesta = new PeticionPublicaciones(Eventos.registrarPublicacion, 200, publicaciones);
+
+    @Override
+    public void notificarNuevaPublicacion(Publicacion publicacion) {
+        PeticionPublicacion respuesta = new PeticionPublicacion(Eventos.registrarPublicacion, 200, publicacion);
         Server.getInstance().notificarTodos(conversor.convertirObjetoString(respuesta));
     }
     

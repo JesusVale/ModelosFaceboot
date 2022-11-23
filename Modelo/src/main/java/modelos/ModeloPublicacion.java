@@ -5,6 +5,7 @@
 package modelos;
 
 import comunicacion.ComunicadorServidor;
+import comunicacion.IComunicadorServidor;
 import entidades.Publicacion;
 import interfaces.IConexionBD;
 import interfaces.IModeloPublicacion;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class ModeloPublicacion implements IModeloPublicacion{
     private final IConexionBD conexionBD;
-    private ComunicadorServidor comunicadorServidor;
+    private IComunicadorServidor comunicadorServidor;
     
     public ModeloPublicacion(IConexionBD conexionBD) 
     {
@@ -95,10 +96,9 @@ public class ModeloPublicacion implements IModeloPublicacion{
         try
         {
            em.getTransaction().begin();
-           System.out.println("Llego xd");
            em.persist(publicacion);
            em.getTransaction().commit();
-           comunicadorServidor.notificarCambioNuevaPublicacion(this.consultarPublicaciones());
+           comunicadorServidor.notificarNuevaPublicacion(publicacion);
            //ComunicadorVista.notificarCambios();
            return publicacion;
         }
