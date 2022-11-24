@@ -4,6 +4,7 @@
  */
 package interfaces;
 import entidades.Comentario;
+import java.util.List;
 /**
  *
  * @author tonyd
@@ -11,6 +12,7 @@ import entidades.Comentario;
 public interface IModeloComentario {
     public Comentario consultar(String idComentario);
     public Comentario actualizar(String idComentario);
-    public boolean eliminar(String idComentario);
-    public boolean registrar(Comentario comentario);
+    public Comentario eliminar(String idComentario);
+    public Comentario registrar(Comentario comentario);
+    public List<Comentario> consultarComentarios();
 }
