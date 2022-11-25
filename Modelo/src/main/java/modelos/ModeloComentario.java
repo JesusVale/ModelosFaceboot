@@ -4,6 +4,8 @@
  */
 package modelos;
 
+import comunicacion.ComunicadorServidor;
+import comunicacion.IComunicadorServidor;
 import entidades.Comentario;
 import interfaces.IConexionBD;
 import interfaces.IModeloComentario;
@@ -18,9 +20,11 @@ import java.util.List;
 public class ModeloComentario implements IModeloComentario {
 
     private final IConexionBD conexionBD;
+    private IComunicadorServidor comunicadorServidor;
 
     public ModeloComentario(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
+        this.comunicadorServidor = new ComunicadorServidor();
     }
 
     @Override
@@ -74,6 +78,7 @@ public class ModeloComentario implements IModeloComentario {
             em.getTransaction().begin();
             em.persist(comentario);
             em.getTransaction().commit();
+            comunicadorServidor.notificarNuevoComentario(comentario);
             return comentario;
         } catch (IllegalStateException e) {
             System.err.println("No se pudo agregar el comentario");

@@ -4,6 +4,7 @@
  */
 package comunicacion;
 
+import entidades.Comentario;
 import entidades.Publicacion;
 
 /**
@@ -12,4 +13,5 @@ import entidades.Publicacion;
  */
 public interface IComunicadorServidor {
     public void notificarNuevaPublicacion(Publicacion publicacion);
+    public void notificarNuevoComentario(Comentario comentario);
 }
