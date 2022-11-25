@@ -28,7 +28,7 @@ public class ModeloPublicacion implements IModeloPublicacion{
     }
 
     @Override
-    public Publicacion consultar(String idPublicacion) {
+    public Publicacion consultar(Integer idPublicacion) {
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
@@ -59,7 +59,7 @@ public class ModeloPublicacion implements IModeloPublicacion{
     }
 
     @Override
-    public Publicacion actualizar(String idPublicacion) {
+    public Publicacion actualizar(Integer idPublicacion) {
         EntityManager em = this.conexionBD.crearConexion(); 
         try {
             Publicacion publicacion = this.consultar(idPublicacion);
@@ -75,7 +75,7 @@ public class ModeloPublicacion implements IModeloPublicacion{
     }
 
     @Override
-    public Publicacion eliminar(String idPublicacion) {
+    public Publicacion eliminar(Integer idPublicacion) {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             Publicacion publicacion = this.consultar(idPublicacion);

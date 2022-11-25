@@ -14,5 +14,5 @@ public interface IModeloComentario {
     public Comentario actualizar(String idComentario);
     public Comentario eliminar(String idComentario);
     public Comentario registrar(Comentario comentario);
-    public List<Comentario> consultarComentarios();
+    public List<Comentario> consultarComentarios(Integer idPublicacion);
 }

@@ -83,10 +83,11 @@ public class ModeloComentario implements IModeloComentario {
     }
 
     @Override
-    public List<Comentario> consultarComentarios() {
+    public List<Comentario> consultarComentarios(Integer idPublicacion) {
         EntityManager em = this.conexionBD.crearConexion();
         try {
-            Query query = em.createQuery("SELECT e FROM Comentario e");
+            Query query = em.createQuery("SELECT e FROM Comentario e WHERE e.publicacion= :idPublicacion ");
+            query.setParameter("idPublicacion", idPublicacion);
             return query.getResultList();
         } catch (IllegalStateException e) {
             System.err.println("No se puedieron consultar los comentarios");

@@ -47,7 +47,7 @@ public class ModeloUsuario implements IModeloUsuario{
         return null;
     }
     @Override
-    public Usuario consultar(Long idUsuario) {
+    public Usuario consultar(Integer idUsuario) {
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
@@ -82,7 +82,7 @@ public class ModeloUsuario implements IModeloUsuario{
     }
 
     @Override
-    public Usuario eliminar(Long idUsuario) {
+    public Usuario eliminar(Integer idUsuario) {
         EntityManager em = this.conexionBD.crearConexion();
         Usuario usuario = this.consultar(idUsuario);
         if (usuario != null) {

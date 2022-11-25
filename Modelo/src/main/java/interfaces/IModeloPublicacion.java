@@ -10,9 +10,9 @@ import java.util.List;
  * @author tonyd
  */
 public interface IModeloPublicacion {
-    public Publicacion consultar(String idPublicacion);
-    public Publicacion actualizar(String idPublicacion);
-    public Publicacion eliminar(String idPublicacion);
+    public Publicacion consultar(Integer idPublicacion);
+    public Publicacion actualizar(Integer idPublicacion);
+    public Publicacion eliminar(Integer idPublicacion);
     public Publicacion registrar(Publicacion publicacion);
     public List<Publicacion> consultarPublicaciones();
 }

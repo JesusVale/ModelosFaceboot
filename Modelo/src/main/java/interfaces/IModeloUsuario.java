@@ -11,9 +11,9 @@ import entidades.Usuario;
  * @author tonyd
  */
 public interface IModeloUsuario {
-    public Usuario consultar(Long idUsuario);
+    public Usuario consultar(Integer idUsuario);
     public Usuario login(Usuario usuario);
     public Usuario actualizar(Usuario usuario);
-    public Usuario eliminar(Long idUsuario);
+    public Usuario eliminar(Integer idUsuario);
     public Usuario registrar(Usuario usuario);
 }
