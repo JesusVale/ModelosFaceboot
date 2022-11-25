@@ -24,8 +24,7 @@ public class ComunicadorServidor implements IComunicadorServidor{
     public ComunicadorServidor() {
         this.conversor = new JsonToObject();
     }
-    
-
+ 
     @Override
     public void notificarNuevaPublicacion(Publicacion publicacion) {
         PeticionPublicacion respuesta = new PeticionPublicacion(Eventos.registrarPublicacion, 200, publicacion);

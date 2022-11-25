@@ -30,21 +30,40 @@ public class ModeloUsuario implements IModeloUsuario{
             String jpqlQuery = "SELECT c FROM Usuario c";
             TypedQuery<Usuario> consulta = em.createQuery(jpqlQuery, Usuario.class);
             List<Usuario> usuarios = consulta.getResultList();
-            System.out.println("Total de usuarios: "+ usuarios.size());
             for (Usuario u : usuarios) {
                 if(u.getEmail().equals(usuario.getEmail()) && u.getPassword().equals(usuario.getPassword())){
-                    System.out.println(log);
                     log.info("Inicio sesion "+ u.getEmail());
                     return u;
                 }
             }
         } catch (IllegalStateException e) {
-            System.err.println("El usuario no existe");
             e.printStackTrace();
             return null;
         }
-        System.out.println("Hola El usuario no existe AAAAAAAAAAAAAAAA");
         return null;
+    }
+    @Override
+    public Usuario loginFacebook(Usuario usuario) {
+        EntityManager em = this.conexionBD.crearConexion();
+        try {
+            String jpqlQuery = "SELECT c FROM Usuario c";
+            TypedQuery<Usuario> consulta = em.createQuery(jpqlQuery, Usuario.class);
+            List<Usuario> usuarios = consulta.getResultList();
+            for (Usuario u : usuarios) {
+                if (u.getIdFb() == null) {
+                    continue;
+                }
+                if (u.getIdFb().equals(usuario.getIdFb())) {
+                    log.info("Inicio sesion " + u.getIdFb());
+                    return u;
+                }
+            }
+            registrar(usuario);
+            return usuario;
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     @Override
     public Usuario consultar(Integer idUsuario) {

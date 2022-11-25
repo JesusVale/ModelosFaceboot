@@ -13,6 +13,7 @@ import entidades.Usuario;
 public interface IModeloUsuario {
     public Usuario consultar(Integer idUsuario);
     public Usuario login(Usuario usuario);
+    public Usuario loginFacebook(Usuario usuario);
     public Usuario actualizar(Usuario usuario);
     public Usuario eliminar(Integer idUsuario);
     public Usuario registrar(Usuario usuario);
