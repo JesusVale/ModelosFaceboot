@@ -1,8 +1,8 @@
 interfaces\IModeloUsuario.class
 modelos\ModeloPublicacion.class
+interfaces\INotificador.class
 comunicacion\IComunicadorServidor.class
 utils\SimpleJavaMail.class
-interfaces\IManejadorMail.class
 modelos\ModeloComentario.class
 conexiones\ConexionBD.class
 interfaces\IComunicadorModeloVista.class

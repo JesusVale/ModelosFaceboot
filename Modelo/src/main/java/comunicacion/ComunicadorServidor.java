@@ -29,13 +29,13 @@ public class ComunicadorServidor implements IComunicadorServidor{
     public void notificarNuevaPublicacion(Publicacion publicacion) {
         PeticionPublicacion respuesta = new PeticionPublicacion(Eventos.registrarPublicacion, 200, publicacion);
         System.out.println("Son verdaAAAAAAAAAAAAd");
-        Server.getInstance().notificarTodos(publicacion.getUsuario(), conversor.convertirObjetoString(respuesta));
+        Server.getInstance().notificarTodos(publicacion.getUsuario().getId(), conversor.convertirObjetoString(respuesta));
     }
 
     @Override
     public void notificarNuevoComentario(Comentario comentario) {
         PeticionComentario respuesta = new PeticionComentario(Eventos.registrarComentario, 200, comentario);
-        Server.getInstance().notificarTodos(comentario.getUsuario(), conversor.convertirObjetoString(respuesta));
+        Server.getInstance().notificarTodos(comentario.getUsuario().getId(), conversor.convertirObjetoString(respuesta));
     }
     
 }
