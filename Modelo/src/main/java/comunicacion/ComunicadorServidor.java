@@ -28,6 +28,7 @@ public class ComunicadorServidor implements IComunicadorServidor{
     @Override
     public void notificarNuevaPublicacion(Publicacion publicacion) {
         PeticionPublicacion respuesta = new PeticionPublicacion(Eventos.registrarPublicacion, 200, publicacion);
+        System.out.println("Son verdaAAAAAAAAAAAAd");
         Server.getInstance().notificarTodos(publicacion.getUsuario(), conversor.convertirObjetoString(respuesta));
     }
 

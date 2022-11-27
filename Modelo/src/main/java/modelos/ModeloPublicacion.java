@@ -99,7 +99,6 @@ public class ModeloPublicacion implements IModeloPublicacion{
            em.persist(publicacion);
            em.getTransaction().commit();
            comunicadorServidor.notificarNuevaPublicacion(publicacion);
-           //ComunicadorVista.notificarCambios();
            return publicacion;
         }
         
