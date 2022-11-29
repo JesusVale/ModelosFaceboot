@@ -34,6 +34,7 @@ public class ModeloHashtag implements IModeloHashtag {
             em.getTransaction().begin();
             em.persist(hashtag);
             em.getTransaction().commit();
+            log.info("Registro Hashtag" + hashtag.getId());
             return hashtag;
         } catch (IllegalStateException e) {
             System.err.println("No se pudo agregar el hashtag");
@@ -41,9 +42,9 @@ public class ModeloHashtag implements IModeloHashtag {
             return null;
         }
     }
-    
+
     @Override
-    public List registrarHashtags(List<Hashtag> hashtags){
+    public List<Hashtag> registrarHashtags(List<Hashtag> hashtags) {
         for (Hashtag hashtag : hashtags) {
             this.registrar(hashtag);
         }
@@ -71,6 +72,7 @@ public class ModeloHashtag implements IModeloHashtag {
                 em.getTransaction().begin();
                 em.remove(hashtag);
                 em.getTransaction().commit();
+                log.info("Eliminacion Hashtag" + hashtag.getId());
                 return null;
             } catch (IllegalStateException e) {
                 System.err.println("No se pudo eliminar el Hashtag");

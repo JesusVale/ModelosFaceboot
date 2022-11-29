@@ -15,6 +15,8 @@ import jakarta.persistence.Query;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -24,6 +26,7 @@ public class ModeloPublicacion implements IModeloPublicacion {
 
     private final IConexionBD conexionBD;
     private IComunicadorServidor comunicadorServidor;
+    private static Logger log = LogManager.getLogger(ModeloPublicacion.class);
 
     public ModeloPublicacion(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
@@ -63,6 +66,7 @@ public class ModeloPublicacion implements IModeloPublicacion {
             em.getTransaction().begin();
             em.persist(publicacion);
             em.getTransaction().commit();
+            log.info("Actualizacion Publicacion " + publicacion.getId());
             return publicacion;
         } catch (IllegalStateException e) {
             System.err.println("No se pudo actualizar la publicacion");
@@ -79,6 +83,7 @@ public class ModeloPublicacion implements IModeloPublicacion {
             em.getTransaction().begin();
             em.remove(publicacion);
             em.getTransaction().commit();
+            log.info("Eliminacion Publicacion " + publicacion.getId());
             return null;
         } catch (IllegalStateException e) {
             System.err.println("No se pudo eliminar la publicacion");
@@ -95,6 +100,7 @@ public class ModeloPublicacion implements IModeloPublicacion {
             em.getTransaction().begin();
             em.persist(publicacion);
             em.getTransaction().commit();
+            log.info("Registro Publicacion " + publicacion.getId());
             comunicadorServidor.notificarNuevaPublicacion(publicacion);
             return publicacion;
         } catch (IllegalStateException e) {

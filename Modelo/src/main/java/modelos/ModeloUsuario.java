@@ -55,7 +55,7 @@ public class ModeloUsuario implements IModeloUsuario{
                     continue;
                 }
                 if (u.getIdFb().equals(usuario.getIdFb())) {
-                    log.info("Inicio sesion " + u.getIdFb());
+                    log.info("Inicio sesion con facebook" + u.getEmail());
                     return u;
                 }
             }
@@ -90,6 +90,7 @@ public class ModeloUsuario implements IModeloUsuario{
                 em.getTransaction().begin();
                 em.merge(usuario);
                 em.getTransaction().commit();
+                log.info("Actualizacion usuario "+ usuario.getNombre());
                 return usuario;
             } catch (IllegalStateException e) {
                 System.err.println("No se pudo actualizar el usuario");
@@ -110,6 +111,7 @@ public class ModeloUsuario implements IModeloUsuario{
                 em.getTransaction().begin();
                 em.remove(usuario);
                 em.getTransaction().commit();
+                log.info("Eliminacion usuario "+ usuario.getNombre());
                 return null;
             } catch (IllegalStateException e) {
                 System.err.println("No se pudo eliminar el usuario");
@@ -129,6 +131,7 @@ public class ModeloUsuario implements IModeloUsuario{
            em.getTransaction().begin(); //Comienza la Transacción
            em.persist(usuario); //Agrega el usuario
            em.getTransaction().commit(); //Termina Transacción
+           log.info("Registro usuario "+ usuario.getNombre());
            return usuario;
         }
         catch(IllegalStateException e)

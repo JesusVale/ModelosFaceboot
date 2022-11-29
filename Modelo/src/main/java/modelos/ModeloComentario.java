@@ -12,6 +12,8 @@ import interfaces.IModeloComentario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -21,6 +23,7 @@ public class ModeloComentario implements IModeloComentario {
 
     private final IConexionBD conexionBD;
     private IComunicadorServidor comunicadorServidor;
+        private static Logger log = LogManager.getLogger(ModeloUsuario.class);
 
     public ModeloComentario(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IModeloHashtag {
     public Hashtag registrar(Hashtag hashtag);
-    public List registrarHashtags(List<Hashtag> hashtags);
+    public List<Hashtag> registrarHashtags(List<Hashtag> hashtags);
     public Hashtag consultar(Integer idHashtag);
     public Hashtag eliminar(Integer idHashtag);
 }

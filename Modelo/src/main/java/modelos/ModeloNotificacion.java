@@ -19,10 +19,10 @@ import utils.SimpleJavaMail;
  *
  * @author tonyd
  */
-public class ModeloNotificacion implements IModeloNotificacion{
+public class ModeloNotificacion implements IModeloNotificacion {
 
     private final IConexionBD conexionBD;
-    private static Logger log = LogManager.getLogger(ModeloHashtag.class);
+    private static Logger log = LogManager.getLogger(ModeloNotificacion.class);
 
     public ModeloNotificacion(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
@@ -41,6 +41,8 @@ public class ModeloNotificacion implements IModeloNotificacion{
             em.getTransaction().begin();
             em.persist(notificacion);
             em.getTransaction().commit();
+
+            log.info("Registro Notificacion" + notificacion.getId());
             return notificacion;
         } catch (IllegalStateException e) {
             System.err.println("No se pudo agregar la notificacion");
