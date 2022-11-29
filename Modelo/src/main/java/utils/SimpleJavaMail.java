@@ -21,16 +21,16 @@ import javax.mail.internet.MimeMessage;
  *
  * @author jegav
  */
-public class SimpleJavaMail implements INotificador {
+public class SimpleJavaMail extends DecoradorNotificacion {
 
     private Session session;
     private Properties properties;
     
-    public SimpleJavaMail() {
+    public SimpleJavaMail(INotificador notificador) {
+        super(notificador);
         this.properties = new Properties();
         llenarProperties();
-        this.session = Session.getDefaultInstance(properties);
-        
+        this.session = Session.getDefaultInstance(properties);      
     }
     
     public void llenarProperties(){
@@ -38,26 +38,24 @@ public class SimpleJavaMail implements INotificador {
         properties.setProperty("mail.smtp.starttls.enable", "true");
         properties.setProperty("mail.smtp.ssl.trust","smtp.gmail.com");
         properties.setProperty("mail.smtp.port", "587");
-        properties.setProperty("mail.smtp.user", "facebootmailarqsft@gmail.com");
+        properties.setProperty("mail.smtp.user", "jegavale@gmail.com");
         properties.setProperty("mail.smtp.auth", "true");
     }
-    
-    
+      
     @Override
-    public boolean notificar(Notificacion notificacion) {
+    public void notificar(Notificacion notificacion) {
         MimeMessage contenedor = new MimeMessage(session);
         try {
             contenedor.setFrom(new InternetAddress((String) this.properties.get("mail.smtp.user")));
-            contenedor.addRecipient(Message.RecipientType.TO, new InternetAddress());
+            contenedor.addRecipient(Message.RecipientType.TO, new InternetAddress(notificacion.getDestinatario().getEmail()));
             contenedor.setSubject("Notificación Faceboot");
             contenedor.setText(notificacion.getContenido());
             Transport t = session.getTransport("smtp");
-            t.connect((String) this.properties.get("mail.smtp.user"), "xsfqnpaznobmkbmb"); //Para consegir la contraseñase debe activar la verificación po 2 pasos y Agregar contraseña para Aplicación
+            t.connect((String) this.properties.get("mail.smtp.user"), "nxrvnfefzbrcxakc"); //Para consegir la contraseñase debe activar la verificación po 2 pasos y Agregar contraseña para Aplicación
             t.sendMessage(contenedor, contenedor.getAllRecipients());
         } catch (Exception ex) {
             Logger.getLogger(SimpleJavaMail.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
     }
     
 }

@@ -7,7 +7,14 @@ C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de sof
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloComentario.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\SimpleJavaMail.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\comunicacion\ComunicadorServidor.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\NotificacionSMS.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\NotificacionDominio.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloNotificacion.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloNotificacion.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloHashtag.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\conexiones\ConexionBD.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloHashtag.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\DecoradorNotificacion.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloComentario.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\comunicacion\IComunicadorServidor.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\INotificador.java

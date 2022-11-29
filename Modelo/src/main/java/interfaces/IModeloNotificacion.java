@@ -8,8 +8,9 @@ import entidades.Notificacion;
 
 /**
  *
- * @author jegav
+ * @author tonyd
  */
-public interface INotificador {
-    public void notificar(Notificacion notificacion);
+public interface IModeloNotificacion {
+    public Notificacion registrar(Notificacion notificacion);
+    public Notificacion consultar(Integer idNotificacion);
 }
