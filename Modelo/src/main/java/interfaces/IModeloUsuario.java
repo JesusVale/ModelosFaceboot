@@ -17,4 +17,5 @@ public interface IModeloUsuario {
     public Usuario actualizar(Usuario usuario);
     public Usuario eliminar(Integer idUsuario);
     public Usuario registrar(Usuario usuario);
+    public Usuario consultarUsuarioPorNombre(String nombre);
 }

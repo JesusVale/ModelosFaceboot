@@ -18,3 +18,4 @@ interfaces\IConexionBD.class
 modelos\ModeloHashtag.class
 utils\NotificacionSMS.class
 interfaces\IModeloNotificacion.class
+.netbeans_automatic_build

@@ -7,6 +7,7 @@ import entidades.Usuario;
 import interfaces.IConexionBD;
 import interfaces.IModeloUsuario;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import java.util.List;
 import jakarta.persistence.TypedQuery;
 import org.apache.logging.log4j.*;
@@ -140,6 +141,24 @@ public class ModeloUsuario implements IModeloUsuario{
     
     public void existeUsuario(Usuario usuario){
         
+    }
+
+    @Override
+    public Usuario consultarUsuarioPorNombre(String nombre) {
+        EntityManager em = this.conexionBD.crearConexion();
+        try
+        {
+            Query query = em.createQuery("SELECT e FROM Usuario e WHERE e.nombre= :nombreUsuario", Usuario.class);
+            query.setParameter("nombreUsuario", nombre);
+            List<Usuario> usuarios =query.getResultList();
+            return usuarios.isEmpty()? null: usuarios.get(0);
+        }
+        catch(IllegalStateException e)
+        {
+            System.err.println("No se pudo consultar el usuario" + nombre);
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }
