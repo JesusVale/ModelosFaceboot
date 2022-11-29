@@ -6,52 +6,49 @@ package modelos;
 
 import comunicacion.ComunicadorServidor;
 import comunicacion.IComunicadorServidor;
+import entidades.Hashtag;
 import entidades.Publicacion;
 import interfaces.IConexionBD;
 import interfaces.IModeloPublicacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  *
  * @author tonyd
  */
-public class ModeloPublicacion implements IModeloPublicacion{
+public class ModeloPublicacion implements IModeloPublicacion {
+
     private final IConexionBD conexionBD;
     private IComunicadorServidor comunicadorServidor;
-    
-    public ModeloPublicacion(IConexionBD conexionBD) 
-    {
-        this.conexionBD=conexionBD;
+
+    public ModeloPublicacion(IConexionBD conexionBD) {
+        this.conexionBD = conexionBD;
         comunicadorServidor = new ComunicadorServidor();
     }
 
     @Override
     public Publicacion consultar(Integer idPublicacion) {
         EntityManager em = this.conexionBD.crearConexion();
-        try
-        {
-           return em.find(Publicacion.class, idPublicacion);
-        }
-        catch(IllegalStateException e)
-        {
+        try {
+            return em.find(Publicacion.class, idPublicacion);
+        } catch (IllegalStateException e) {
             System.err.println("No se pudo consultar la publicacion" + idPublicacion);
             e.printStackTrace();
             return null;
         }
     }
-    
+
     @Override
     public List<Publicacion> consultarPublicaciones() {
         EntityManager em = this.conexionBD.crearConexion();
-        try
-        {
+        try {
             Query query = em.createQuery("SELECT e FROM Publicacion e");
-           return query.getResultList();
-        }
-        catch(IllegalStateException e)
-        {
+            return query.getResultList();
+        } catch (IllegalStateException e) {
             System.err.println("No se puedieron consultar las publicaciones");
             e.printStackTrace();
             return null;
@@ -60,7 +57,7 @@ public class ModeloPublicacion implements IModeloPublicacion{
 
     @Override
     public Publicacion actualizar(Integer idPublicacion) {
-        EntityManager em = this.conexionBD.crearConexion(); 
+        EntityManager em = this.conexionBD.crearConexion();
         try {
             Publicacion publicacion = this.consultar(idPublicacion);
             em.getTransaction().begin();
@@ -71,7 +68,7 @@ public class ModeloPublicacion implements IModeloPublicacion{
             System.err.println("No se pudo actualizar la publicacion");
             e.printStackTrace();
             return null;
-        } 
+        }
     }
 
     @Override
@@ -93,23 +90,18 @@ public class ModeloPublicacion implements IModeloPublicacion{
     @Override
     public Publicacion registrar(Publicacion publicacion) {
         EntityManager em = this.conexionBD.crearConexion();
-        try
-        {
-           em.getTransaction().begin();
-           em.persist(publicacion);
-           em.getTransaction().commit();
-           comunicadorServidor.notificarNuevaPublicacion(publicacion);
-           return publicacion;
-        }
-        
-        catch(IllegalStateException e)
-        {
+        System.out.println(publicacion.getHashtagPublicacion());
+        try {
+            em.getTransaction().begin();
+            em.persist(publicacion);
+            em.getTransaction().commit();
+            comunicadorServidor.notificarNuevaPublicacion(publicacion);
+            return publicacion;
+        } catch (IllegalStateException e) {
             System.err.println("No se pudo agregar la publicacion");
             e.printStackTrace();
             return null;
         }
     }
 
-    
-    
 }

@@ -35,8 +35,8 @@ public class ModeloNotificacion implements IModeloNotificacion{
             INotificador notificador = new NotificacionDominio();
             notificador = new SimpleJavaMail(notificador);
             notificador.notificar(notificacion);
-            notificador = new NotificacionSMS(notificador);
-            notificador.notificar(notificacion);
+//            notificador = new NotificacionSMS(notificador);
+//            notificador.notificar(notificacion);
 
             em.getTransaction().begin();
             em.persist(notificacion);

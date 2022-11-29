@@ -8,8 +8,8 @@ import interfaces.INotificador;
 public class NotificacionSMS extends DecoradorNotificacion{
     // Find your Account SID and Auth Token at twilio.com/console
     // and set the environment variables. See http://twil.io/secure
-    public static final String ACCOUNT_SID = "ACc4d0a794220d8944f1e84822f93e754e";
-    public static final String AUTH_TOKEN = "87410ef389023d2b478b4cd1f5211dba";
+    public static final String ACCOUNT_SID = "";
+    public static final String AUTH_TOKEN = "";
 
     public NotificacionSMS(INotificador notificador) {
         super(notificador);
