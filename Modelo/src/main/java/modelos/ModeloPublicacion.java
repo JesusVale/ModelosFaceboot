@@ -9,6 +9,7 @@ import comunicacion.IComunicadorServidor;
 import entidades.Hashtag;
 import entidades.Publicacion;
 import interfaces.IConexionBD;
+import interfaces.IModeloHashtag;
 import interfaces.IModeloPublicacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -97,6 +98,9 @@ public class ModeloPublicacion implements IModeloPublicacion {
         EntityManager em = this.conexionBD.crearConexion();
         System.out.println(publicacion.getHashtagPublicacion());
         try {
+            ModeloHashtag modelo = new ModeloHashtag(conexionBD);
+            List<Hashtag> hashtagsRegistrados = modelo.registrarHashtags(publicacion.getHashtagPublicacion());
+            publicacion.setHashtagPublicacion(hashtagsRegistrados);
             em.getTransaction().begin();
             em.persist(publicacion);
             em.getTransaction().commit();

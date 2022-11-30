@@ -6,11 +6,15 @@ package modelos;
 
 import entidades.Hashtag;
 import entidades.Hashtag;
+import entidades.Usuario;
 import interfaces.IConexionBD;
 import interfaces.IModeloHashtag;
 import interfaces.INotificador;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,12 +49,21 @@ public class ModeloHashtag implements IModeloHashtag {
 
     @Override
     public List<Hashtag> registrarHashtags(List<Hashtag> hashtags) {
+        List<Hashtag> hashtagsRegistrados = new ArrayList();
         for (Hashtag hashtag : hashtags) {
-            this.registrar(hashtag);
+            if(!existeHashtag(hashtag)){
+                this.registrar(hashtag);
+            }
+            Hashtag hashtagRegistrado;
+            try {
+                hashtagRegistrado = this.consultarPorTema(hashtag.getTema());
+                hashtagsRegistrados.add(hashtagRegistrado);
+            } catch (Exception ex) {
+            }
         }
-        return hashtags;
+        return hashtagsRegistrados;
     }
-
+    
     @Override
     public Hashtag consultar(Integer idHashtag) {
         EntityManager em = this.conexionBD.crearConexion();
@@ -81,6 +94,34 @@ public class ModeloHashtag implements IModeloHashtag {
             }
         } else {
             return null;
+        }
+    }
+
+    @Override
+    public Hashtag consultarPorTema(String hashtag) throws Exception {
+        EntityManager em = this.conexionBD.crearConexion();
+        try
+        {
+            Query query = em.createQuery("SELECT e FROM Hashtag e WHERE e.tema= :nombreHashtag", Hashtag.class);
+            query.setParameter("nombreHashtag", hashtag);
+            List<Hashtag> hashtags =query.getResultList();
+            if(hashtags.isEmpty()){
+                throw new Exception("No se encontró un hashtag");
+            }
+            return hashtags.get(0);
+        }
+        catch(IllegalStateException e)
+        {
+            throw new Exception("No pudo realizar la consulta"); 
+        }
+    }
+
+    public boolean existeHashtag(Hashtag hashtag){
+        try{
+            this.consultarPorTema(hashtag.getTema());
+            return true;
+        } catch(Exception ex){
+            return false;
         }
     }
 

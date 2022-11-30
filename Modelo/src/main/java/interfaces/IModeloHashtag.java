@@ -15,5 +15,6 @@ public interface IModeloHashtag {
     public Hashtag registrar(Hashtag hashtag);
     public List<Hashtag> registrarHashtags(List<Hashtag> hashtags);
     public Hashtag consultar(Integer idHashtag);
+    public Hashtag consultarPorTema(String hashtag) throws Exception;
     public Hashtag eliminar(Integer idHashtag);
 }
