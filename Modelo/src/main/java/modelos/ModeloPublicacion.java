@@ -16,6 +16,7 @@ import jakarta.persistence.Query;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -112,6 +113,21 @@ public class ModeloPublicacion implements IModeloPublicacion {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<Publicacion> consultarPublicacionesPorEtiqueta(String hashtag) throws Exception {
+        ModeloHashtag modeloHashtag = new ModeloHashtag(conexionBD);
+        List<Publicacion> publicacionesRespuesta = new ArrayList();
+        Hashtag hashtagRegistrado = modeloHashtag.consultarPorTema(hashtag);
+ 
+        for (Publicacion publicacion: this.consultarPublicaciones()) {
+            if(publicacion.getHashtagPublicacion().contains(hashtagRegistrado)){
+                publicacionesRespuesta.add(publicacion);
+            }
+        }
+        
+        return publicacionesRespuesta;
     }
 
 }

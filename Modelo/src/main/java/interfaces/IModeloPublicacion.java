@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package interfaces;
+import entidades.Hashtag;
 import entidades.Publicacion;
 import java.util.List;
 /**
@@ -15,4 +16,5 @@ public interface IModeloPublicacion {
     public Publicacion eliminar(Integer idPublicacion);
     public Publicacion registrar(Publicacion publicacion);
     public List<Publicacion> consultarPublicaciones();
+    public List<Publicacion> consultarPublicacionesPorEtiqueta(String hashtag) throws Exception;
 }
