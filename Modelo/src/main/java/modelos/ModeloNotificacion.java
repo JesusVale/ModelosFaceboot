@@ -37,10 +37,19 @@ public class ModeloNotificacion implements IModeloNotificacion {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             INotificador notificador = new NotificacionDominio();
-            notificador = new SimpleJavaMail(notificador);
-            notificador.notificar(notificacion);
-            notificador = new NotificacionSMS(notificador);
-            notificador.notificar(notificacion);
+            if (notificacion.getMotorEnvio().equals(MotorEnvio.TwilioSMS)) {
+                notificador = new NotificacionSMS(notificador);
+                notificador.notificar(notificacion);
+            }
+            if (notificacion.getMotorEnvio().equals(MotorEnvio.simpleJavaMail)) {
+                notificador = new SimpleJavaMail(notificador);
+                notificador.notificar(notificacion);
+            } else if(notificacion.getMotorEnvio().equals(MotorEnvio.ambos)) {
+                notificador = new SimpleJavaMail(notificador);
+                notificador.notificar(notificacion);
+                notificador = new NotificacionSMS(notificador);
+                notificador.notificar(notificacion);
+            }
             em.getTransaction().begin();
             em.persist(notificacion);
             em.getTransaction().commit();
