@@ -100,8 +100,10 @@ public class ModeloPublicacion implements IModeloPublicacion {
         System.out.println(publicacion.getHashtagPublicacion());
         try {
             ModeloHashtag modelo = new ModeloHashtag(conexionBD);
-            List<Hashtag> hashtagsRegistrados = modelo.registrarHashtags(publicacion.getHashtagPublicacion());
-            publicacion.setHashtagPublicacion(hashtagsRegistrados);
+            if (publicacion.getHashtagPublicacion() != null) {
+                List<Hashtag> hashtagsRegistrados = modelo.registrarHashtags(publicacion.getHashtagPublicacion());
+                publicacion.setHashtagPublicacion(hashtagsRegistrados);
+            }
             em.getTransaction().begin();
             em.persist(publicacion);
             em.getTransaction().commit();
