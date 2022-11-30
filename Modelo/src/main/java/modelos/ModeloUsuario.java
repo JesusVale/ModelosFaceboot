@@ -153,7 +153,7 @@ public class ModeloUsuario implements IModeloUsuario{
         {
             Query query = em.createQuery("SELECT e FROM Usuario e WHERE e.nombre= :nombreUsuario", Usuario.class);
             query.setParameter("nombreUsuario", nombre);
-            List<Usuario> usuarios =query.getResultList();
+            List<Usuario> usuarios = query.getResultList();
             return usuarios.isEmpty()? null: usuarios.get(0);
         }
         catch(IllegalStateException e)

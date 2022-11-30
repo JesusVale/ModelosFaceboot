@@ -5,10 +5,14 @@
 package modelos;
 
 import entidades.Notificacion;
+import entidades.Usuario;
+import enumeradores.MotorEnvio;
+import enumeradores.Sexo;
 import interfaces.IConexionBD;
 import interfaces.IModeloNotificacion;
 import interfaces.INotificador;
 import jakarta.persistence.EntityManager;
+import java.util.Calendar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.NotificacionDominio;
@@ -30,18 +34,16 @@ public class ModeloNotificacion implements IModeloNotificacion {
 
     @Override
     public Notificacion registrar(Notificacion notificacion) {
-        EntityManager em = this.conexionBD.crearConexion(); //Establece conexion con la BD
+        EntityManager em = this.conexionBD.crearConexion();
         try {
             INotificador notificador = new NotificacionDominio();
             notificador = new SimpleJavaMail(notificador);
             notificador.notificar(notificacion);
-//            notificador = new NotificacionSMS(notificador);
-//            notificador.notificar(notificacion);
-
+            notificador = new NotificacionSMS(notificador);
+            notificador.notificar(notificacion);
             em.getTransaction().begin();
             em.persist(notificacion);
             em.getTransaction().commit();
-
             log.info("Registro Notificacion" + notificacion.getId());
             return notificacion;
         } catch (IllegalStateException e) {
