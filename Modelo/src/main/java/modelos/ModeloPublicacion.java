@@ -8,6 +8,8 @@ import comunicacion.ComunicadorServidor;
 import comunicacion.IComunicadorServidor;
 import entidades.Hashtag;
 import entidades.Publicacion;
+import excepciones.NotFoundException;
+import excepciones.PersistException;
 import interfaces.IConexionBD;
 import interfaces.IModeloHashtag;
 import interfaces.IModeloPublicacion;
@@ -36,49 +38,28 @@ public class ModeloPublicacion implements IModeloPublicacion {
     }
 
     @Override
-    public Publicacion consultar(Integer idPublicacion) {
+    public Publicacion consultar(Integer idPublicacion) throws NotFoundException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             return em.find(Publicacion.class, idPublicacion);
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo consultar la publicacion" + idPublicacion);
-            e.printStackTrace();
-            return null;
+            throw new NotFoundException("No se pudo consultar la publicacion en la BD");
         }
     }
 
     @Override
-    public List<Publicacion> consultarPublicaciones() {
+    public List<Publicacion> consultarPublicaciones() throws NotFoundException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             Query query = em.createQuery("SELECT e FROM Publicacion e");
             return query.getResultList();
         } catch (IllegalStateException e) {
-            System.err.println("No se puedieron consultar las publicaciones");
-            e.printStackTrace();
-            return null;
+            throw new NotFoundException("No se pudo consultar las publicaciones de la BD");
         }
     }
 
     @Override
-    public Publicacion actualizar(Integer idPublicacion) {
-        EntityManager em = this.conexionBD.crearConexion();
-        try {
-            Publicacion publicacion = this.consultar(idPublicacion);
-            em.getTransaction().begin();
-            em.persist(publicacion);
-            em.getTransaction().commit();
-            log.info("Actualizacion Publicacion " + publicacion.getId());
-            return publicacion;
-        } catch (IllegalStateException e) {
-            System.err.println("No se pudo actualizar la publicacion");
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
-    public Publicacion eliminar(Integer idPublicacion) {
+    public Publicacion eliminar(Integer idPublicacion) throws PersistException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             Publicacion publicacion = this.consultar(idPublicacion);
@@ -86,18 +67,15 @@ public class ModeloPublicacion implements IModeloPublicacion {
             em.remove(publicacion);
             em.getTransaction().commit();
             log.info("Eliminacion Publicacion " + publicacion.getId());
-            return null;
-        } catch (IllegalStateException e) {
-            System.err.println("No se pudo eliminar la publicacion");
-            e.printStackTrace();
-            return null;
+            return publicacion;
+        } catch (Exception e) {
+            throw new PersistException("No se pudo registrar la publicacion en la BD");
         }
     }
 
     @Override
-    public Publicacion registrar(Publicacion publicacion) {
+    public Publicacion registrar(Publicacion publicacion) throws PersistException {
         EntityManager em = this.conexionBD.crearConexion();
-        System.out.println(publicacion.getHashtagPublicacion());
         try {
             ModeloHashtag modelo = new ModeloHashtag(conexionBD);
             if (publicacion.getHashtagPublicacion() != null) {
@@ -111,9 +89,7 @@ public class ModeloPublicacion implements IModeloPublicacion {
             comunicadorServidor.notificarNuevaPublicacion(publicacion);
             return publicacion;
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo agregar la publicacion");
-            e.printStackTrace();
-            return null;
+            throw new PersistException("No se pudo registrar la publicacion en la BD");
         }
     }
 
@@ -122,13 +98,13 @@ public class ModeloPublicacion implements IModeloPublicacion {
         ModeloHashtag modeloHashtag = new ModeloHashtag(conexionBD);
         List<Publicacion> publicacionesRespuesta = new ArrayList();
         Hashtag hashtagRegistrado = modeloHashtag.consultarPorTema(hashtag);
- 
-        for (Publicacion publicacion: this.consultarPublicaciones()) {
-            if(publicacion.getHashtagPublicacion().contains(hashtagRegistrado)){
+
+        for (Publicacion publicacion : this.consultarPublicaciones()) {
+            if (publicacion.getHashtagPublicacion().contains(hashtagRegistrado)) {
                 publicacionesRespuesta.add(publicacion);
             }
         }
-        
+
         return publicacionesRespuesta;
     }
 

@@ -8,6 +8,8 @@ import entidades.Notificacion;
 import entidades.Usuario;
 import enumeradores.MotorEnvio;
 import enumeradores.Sexo;
+import excepciones.NotFoundException;
+import excepciones.PersistException;
 import interfaces.IConexionBD;
 import interfaces.IModeloNotificacion;
 import interfaces.INotificador;
@@ -35,7 +37,7 @@ public class ModeloNotificacion implements IModeloNotificacion {
     }
 
     @Override
-    public Notificacion registrar(Notificacion notificacion) {
+    public Notificacion registrar(Notificacion notificacion) throws PersistException{
         EntityManager em = this.conexionBD.crearConexion();
         try {
             INotificador notificador = new NotificacionDominio();
@@ -47,9 +49,7 @@ public class ModeloNotificacion implements IModeloNotificacion {
                 notificador = new SimpleJavaMail(notificador);
                 notificador.notificar(notificacion);
             } else if(notificacion.getMotorEnvio().equals(MotorEnvio.ambos)) {
-                notificador = new SimpleJavaMail(notificador);
-                //notificador.notificar(notificacion);
-                notificador = new NotificacionSMS(notificador);
+                notificador = new SimpleJavaMail(new NotificacionSMS(notificador));
                 notificador.notificar(notificacion);
             }
             em.getTransaction().begin();
@@ -58,26 +58,22 @@ public class ModeloNotificacion implements IModeloNotificacion {
             log.info("Registro Notificacion" + notificacion.getId());
             return notificacion;
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo agregar la notificacion");
-            e.printStackTrace();
-            return null;
+            throw new PersistException("No se pudo registrar la notificacion en la BD");
         }
     }
 
     @Override
-    public Notificacion consultar(Integer idNotificacion) {
+    public Notificacion consultar(Integer idNotificacion) throws NotFoundException{
         EntityManager em = this.conexionBD.crearConexion();
         try {
             return em.find(Notificacion.class, idNotificacion);
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo consultar la notificacion" + idNotificacion);
-            e.printStackTrace();
-            return null;
+            throw new NotFoundException("No se pudo consultar la notificacion en la BD");
         }
     }
 
     @Override
-    public List<Notificacion> consultarNotificacionesPorRemitente(Usuario remitente) {
+    public List<Notificacion> consultarNotificacionesPorRemitente(Usuario remitente) throws NotFoundException{
         EntityManager em = this.conexionBD.crearConexion();
         try
         {
@@ -86,11 +82,8 @@ public class ModeloNotificacion implements IModeloNotificacion {
             List<Notificacion> notificaciones = query.getResultList();
             return notificaciones;
         }
-        catch(IllegalStateException e)
-        {
-            System.err.println("No se pudieron consultar las notificaciones");
-            e.printStackTrace();
-            return null;
+        catch(IllegalStateException e){
+            throw new NotFoundException("No se pudo consultar la notificacion en la BD");
         }
     }
 }
