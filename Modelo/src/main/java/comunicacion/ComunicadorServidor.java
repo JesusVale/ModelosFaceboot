@@ -4,6 +4,7 @@
  */
 package comunicacion;
 
+import interfaces.IComunicadorServidor;
 import conversors.IJsonToObject;
 import conversors.JsonToObject;
 import entidades.Comentario;

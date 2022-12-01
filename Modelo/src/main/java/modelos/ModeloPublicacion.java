@@ -5,7 +5,7 @@
 package modelos;
 
 import comunicacion.ComunicadorServidor;
-import comunicacion.IComunicadorServidor;
+import interfaces.IComunicadorServidor;
 import entidades.Hashtag;
 import entidades.Publicacion;
 import excepciones.NotFoundException;
