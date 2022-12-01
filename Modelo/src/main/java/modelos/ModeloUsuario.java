@@ -143,9 +143,7 @@ public class ModeloUsuario implements IModeloUsuario{
         }
         catch(IllegalStateException e)
         {
-            throw new PersistException("No se pudo consultar la BD");
-            //e.printStackTrace();
-            //return null;
+            throw new PersistException("No se pudo registrar el usuario en la BD");
         }
     }
     
