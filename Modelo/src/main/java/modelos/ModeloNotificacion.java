@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utils.DecoradorNotificacion;
 import utils.NotificacionDominio;
 import utils.NotificacionSMS;
 import utils.SimpleJavaMail;
@@ -39,18 +40,19 @@ public class ModeloNotificacion implements IModeloNotificacion {
     @Override
     public Notificacion registrar(Notificacion notificacion) throws PersistException{
         EntityManager em = this.conexionBD.crearConexion();
+        System.out.println(notificacion.getMotorEnvio());
         try {
             INotificador notificador = new NotificacionDominio();
             if (notificacion.getMotorEnvio().equals(MotorEnvio.TwilioSMS)) {
                 notificador = new NotificacionSMS(notificador);
                 notificador.notificar(notificacion);
             }
-            if (notificacion.getMotorEnvio().equals(MotorEnvio.simpleJavaMail)) {
+            else if (notificacion.getMotorEnvio().equals(MotorEnvio.simpleJavaMail)) {
                 notificador = new SimpleJavaMail(notificador);
                 notificador.notificar(notificacion);
             } else if(notificacion.getMotorEnvio().equals(MotorEnvio.ambos)) {
-                notificador = new SimpleJavaMail(new NotificacionSMS(notificador));
-                notificador.notificar(notificacion);
+                DecoradorNotificacion decorador = new NotificacionSMS(new SimpleJavaMail(new NotificacionDominio()));
+                decorador.notificar(notificacion);
             }
             em.getTransaction().begin();
             em.persist(notificacion);
