@@ -7,6 +7,7 @@ package modelos;
 import entidades.Hashtag;
 import entidades.Hashtag;
 import entidades.Usuario;
+import excepciones.PersistException;
 import interfaces.IConexionBD;
 import interfaces.IModeloHashtag;
 import interfaces.INotificador;
@@ -32,7 +33,7 @@ public class ModeloHashtag implements IModeloHashtag {
     }
 
     @Override
-    public Hashtag registrar(Hashtag hashtag) {
+    public Hashtag registrar(Hashtag hashtag) throws PersistException{
         EntityManager em = this.conexionBD.crearConexion(); //Establece conexion con la BD
         try {
             em.getTransaction().begin();
@@ -41,14 +42,12 @@ public class ModeloHashtag implements IModeloHashtag {
             log.info("Registro Hashtag" + hashtag.getId());
             return hashtag;
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo agregar el hashtag");
-            e.printStackTrace();
-            return null;
+            throw new PersistException("No se pudo Registrar en la BD");
         }
     }
 
     @Override
-    public List<Hashtag> registrarHashtags(List<Hashtag> hashtags) {
+    public List<Hashtag> registrarHashtags(List<Hashtag> hashtags) throws PersistException{
         List<Hashtag> hashtagsRegistrados = new ArrayList();
         for (Hashtag hashtag : hashtags) {
             if(!existeHashtag(hashtag)){
@@ -59,25 +58,24 @@ public class ModeloHashtag implements IModeloHashtag {
                 hashtagRegistrado = this.consultarPorTema(hashtag.getTema());
                 hashtagsRegistrados.add(hashtagRegistrado);
             } catch (Exception ex) {
+                throw new PersistException("No se pudo registrar en la BD");
             }
         }
         return hashtagsRegistrados;
     }
     
     @Override
-    public Hashtag consultar(Integer idHashtag) {
+    public Hashtag consultar(Integer idHashtag) throws PersistException{
         EntityManager em = this.conexionBD.crearConexion();
         try {
             return em.find(Hashtag.class, idHashtag);
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo consultar el Hashtag" + idHashtag);
-            e.printStackTrace();
-            return null;
+            throw new PersistException("No se pudo registrar en la BD");
         }
     }
 
     @Override
-    public Hashtag eliminar(Integer idHashtag) {
+    public Hashtag eliminar(Integer idHashtag) throws PersistException{
         EntityManager em = this.conexionBD.crearConexion();
         Hashtag hashtag = this.consultar(idHashtag);
         if (hashtag != null) {
@@ -88,9 +86,7 @@ public class ModeloHashtag implements IModeloHashtag {
                 log.info("Eliminacion Hashtag" + hashtag.getId());
                 return null;
             } catch (IllegalStateException e) {
-                System.err.println("No se pudo eliminar el Hashtag");
-                e.printStackTrace();
-                return null;
+                throw new PersistException("No se pudo registrar en la BD");
             }
         } else {
             return null;

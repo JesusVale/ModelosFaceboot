@@ -5,6 +5,8 @@
 package interfaces;
 
 import entidades.Hashtag;
+import excepciones.FacebootException;
+import excepciones.PersistException;
 import java.util.List;
 
 /**
@@ -12,9 +14,9 @@ import java.util.List;
  * @author tonyd
  */
 public interface IModeloHashtag {
-    public Hashtag registrar(Hashtag hashtag);
-    public List<Hashtag> registrarHashtags(List<Hashtag> hashtags);
-    public Hashtag consultar(Integer idHashtag);
+    public Hashtag registrar(Hashtag hashtag) throws PersistException;
+    public List<Hashtag> registrarHashtags(List<Hashtag> hashtags) throws PersistException;
+    public Hashtag consultar(Integer idHashtag) throws PersistException;
     public Hashtag consultarPorTema(String hashtag) throws Exception;
-    public Hashtag eliminar(Integer idHashtag);
+    public Hashtag eliminar(Integer idHashtag) throws PersistException;
 }
