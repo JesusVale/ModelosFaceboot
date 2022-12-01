@@ -17,6 +17,7 @@ public class NotificacionSMS extends DecoradorNotificacion{
 
     @Override
     public void notificar(Notificacion notificacion){
+        super.notificar(notificacion);
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+52"+notificacion.getDestinatario().getTelefono()),

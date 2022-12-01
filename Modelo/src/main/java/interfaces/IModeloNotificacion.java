@@ -5,6 +5,8 @@
 package interfaces;
 
 import entidades.Notificacion;
+import entidades.Usuario;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,5 @@ import entidades.Notificacion;
 public interface IModeloNotificacion {
     public Notificacion registrar(Notificacion notificacion);
     public Notificacion consultar(Integer idNotificacion);
+    public List<Notificacion> consultarNotificacionesPorRemitente(Usuario remitente);
 }

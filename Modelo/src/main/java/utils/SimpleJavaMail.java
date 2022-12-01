@@ -44,6 +44,7 @@ public class SimpleJavaMail extends DecoradorNotificacion {
       
     @Override
     public void notificar(Notificacion notificacion) {
+        super.notificar(notificacion);
         MimeMessage contenedor = new MimeMessage(session);
         try {
             contenedor.setFrom(new InternetAddress((String) this.properties.get("mail.smtp.user")));

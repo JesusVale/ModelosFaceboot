@@ -12,7 +12,9 @@ import interfaces.IConexionBD;
 import interfaces.IModeloNotificacion;
 import interfaces.INotificador;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import java.util.Calendar;
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.NotificacionDominio;
@@ -46,7 +48,7 @@ public class ModeloNotificacion implements IModeloNotificacion {
                 notificador.notificar(notificacion);
             } else if(notificacion.getMotorEnvio().equals(MotorEnvio.ambos)) {
                 notificador = new SimpleJavaMail(notificador);
-                notificador.notificar(notificacion);
+                //notificador.notificar(notificacion);
                 notificador = new NotificacionSMS(notificador);
                 notificador.notificar(notificacion);
             }
@@ -69,6 +71,24 @@ public class ModeloNotificacion implements IModeloNotificacion {
             return em.find(Notificacion.class, idNotificacion);
         } catch (IllegalStateException e) {
             System.err.println("No se pudo consultar la notificacion" + idNotificacion);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Notificacion> consultarNotificacionesPorRemitente(Usuario remitente) {
+        EntityManager em = this.conexionBD.crearConexion();
+        try
+        {
+            Query query = em.createQuery("SELECT e FROM Notificacion e WHERE e.remitente= :remitente", Notificacion.class);
+            query.setParameter("remitente", remitente);
+            List<Notificacion> notificaciones = query.getResultList();
+            return notificaciones;
+        }
+        catch(IllegalStateException e)
+        {
+            System.err.println("No se pudieron consultar las notificaciones");
             e.printStackTrace();
             return null;
         }

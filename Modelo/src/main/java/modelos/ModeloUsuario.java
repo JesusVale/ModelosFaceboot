@@ -4,6 +4,8 @@
  */
 package modelos;
 import entidades.Usuario;
+import excepciones.FacebootException;
+import excepciones.PersistException;
 import interfaces.IConexionBD;
 import interfaces.IModeloUsuario;
 import jakarta.persistence.EntityManager;
@@ -59,9 +61,10 @@ public class ModeloUsuario implements IModeloUsuario{
                     return u;
                 }
             }
+
             registrar(usuario);
             return usuario;
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -124,26 +127,52 @@ public class ModeloUsuario implements IModeloUsuario{
     }
     
     @Override
-    public Usuario registrar(Usuario usuario) {
+    public Usuario registrar(Usuario usuario) throws PersistException, FacebootException {
         EntityManager em = this.conexionBD.crearConexion(); //Establece conexion con la BD
         try
         {
+            if(existeEmail(usuario)){
+               throw new FacebootException("El email colocado ya esta registrado");
+           }
            em.getTransaction().begin(); //Comienza la Transacción
            em.persist(usuario); //Agrega el usuario
            em.getTransaction().commit(); //Termina Transacción
            log.info("Registro usuario "+ usuario.getNombre());
+           
            return usuario;
         }
         catch(IllegalStateException e)
         {
-            System.err.println("No se pudo agregar el usuario");
-            e.printStackTrace();
-            return null;
+            throw new PersistException("No se pudo consultar la BD");
+            //e.printStackTrace();
+            //return null;
         }
     }
     
-    public void existeUsuario(Usuario usuario){
-        
+    public boolean existeUsuario(Usuario usuario){
+        Usuario usuarioEncontrado = consultarUsuarioPorNombre(usuario.getNombre());
+        return usuarioEncontrado != null; //
+    }
+    
+    public boolean existeEmail(Usuario usuario){
+        for (Usuario usuarioRegistrado: this.consultarUsuarios()) {
+            System.out.println(usuario.getEmail());
+            if(usuarioRegistrado.getEmail().equals(usuario.getEmail())){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public List<Usuario> consultarUsuarios() {
+        EntityManager em = this.conexionBD.crearConexion();
+        try {
+            Query query = em.createQuery("SELECT e FROM Usuario e");
+            return query.getResultList();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

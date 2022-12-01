@@ -5,6 +5,8 @@
 package interfaces;
 
 import entidades.Usuario;
+import excepciones.FacebootException;
+import excepciones.PersistException;
 
 /**
  *
@@ -16,6 +18,6 @@ public interface IModeloUsuario {
     public Usuario loginFacebook(Usuario usuario);
     public Usuario actualizar(Usuario usuario);
     public Usuario eliminar(Integer idUsuario);
-    public Usuario registrar(Usuario usuario);
+    public Usuario registrar(Usuario usuario) throws PersistException, FacebootException;
     public Usuario consultarUsuarioPorNombre(String nombre);
 }
