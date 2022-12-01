@@ -4,15 +4,16 @@
  */
 package interfaces;
 import entidades.Comentario;
+import excepciones.NotFoundException;
+import excepciones.PersistException;
 import java.util.List;
 /**
  *
  * @author tonyd
  */
 public interface IModeloComentario {
-    public Comentario consultar(String idComentario);
-    public Comentario actualizar(String idComentario);
-    public Comentario eliminar(String idComentario);
-    public Comentario registrar(Comentario comentario);
-    public List<Comentario> consultarComentarios(Integer idPublicacion);
+    public Comentario consultar(Integer idComentario);
+    public Comentario eliminar(Comentario Comentario) throws PersistException;
+    public Comentario registrar(Comentario comentario) throws PersistException;
+    public List<Comentario> consultarComentarios(Integer idPublicacion) throws PersistException;
 }

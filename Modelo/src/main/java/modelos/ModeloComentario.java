@@ -7,6 +7,7 @@ package modelos;
 import comunicacion.ComunicadorServidor;
 import comunicacion.IComunicadorServidor;
 import entidades.Comentario;
+import excepciones.PersistException;
 import interfaces.IConexionBD;
 import interfaces.IModeloComentario;
 import jakarta.persistence.EntityManager;
@@ -31,7 +32,7 @@ public class ModeloComentario implements IModeloComentario {
     }
 
     @Override
-    public Comentario consultar(String idComentario) {
+    public Comentario consultar(Integer idComentario) {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             return em.find(Comentario.class, idComentario);
@@ -43,39 +44,24 @@ public class ModeloComentario implements IModeloComentario {
     }
 
     @Override
-    public Comentario actualizar(String idComentario) {
+    public Comentario eliminar(Comentario comentario) throws PersistException{
         EntityManager em = this.conexionBD.crearConexion();
         try {
-            Comentario comentario = this.consultar(idComentario);
+//            Query query = em.createQuery("DELETE e FROM Comentario e WHERE e.id= :idComentario ");
+//            query.setParameter("idComentario", comentario.);
             em.getTransaction().begin();
-            em.persist(comentario);
+            System.out.println("Si entró al begin");
+            Query query = em.createQuery("DELETE FROM Comentario e WHERE e.id = :idComentario");
+            query.setParameter("idComentario", comentario.getId()).executeUpdate();
             em.getTransaction().commit();
             return comentario;
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo actualizar el comentario");
-            e.printStackTrace();
-            return null;
+            throw new PersistException("No se pudó eliminar el comentario");
         }
     }
 
     @Override
-    public Comentario eliminar(String idComentario) {
-        EntityManager em = this.conexionBD.crearConexion();
-        try {
-            Comentario comentario = this.consultar(idComentario);
-            em.getTransaction().begin();
-            em.remove(comentario);
-            em.getTransaction().commit();
-            return null;
-        } catch (IllegalStateException e) {
-            System.err.println("No se pudo eliminar el comentario");
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
-    public Comentario registrar(Comentario comentario) {
+    public Comentario registrar(Comentario comentario) throws PersistException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             em.getTransaction().begin();
@@ -84,23 +70,19 @@ public class ModeloComentario implements IModeloComentario {
             comunicadorServidor.notificarNuevoComentario(comentario);
             return comentario;
         } catch (IllegalStateException e) {
-            System.err.println("No se pudo agregar el comentario");
-            e.printStackTrace();
-            return null;
+            throw new PersistException("Error al registrar comentarios");
         }
     }
 
     @Override
-    public List<Comentario> consultarComentarios(Integer idPublicacion) {
+    public List<Comentario> consultarComentarios(Integer idPublicacion) throws PersistException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             Query query = em.createQuery("SELECT e FROM Comentario e WHERE e.publicacion= :idPublicacion ");
             query.setParameter("idPublicacion", idPublicacion);
             return query.getResultList();
         } catch (IllegalStateException e) {
-            System.err.println("No se puedieron consultar los comentarios");
-            e.printStackTrace();
-            return null;
+            throw new PersistException("Error al consultar comentarios");
         }
     }
 }
