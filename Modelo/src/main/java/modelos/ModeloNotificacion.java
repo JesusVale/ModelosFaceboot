@@ -43,7 +43,7 @@ public class ModeloNotificacion implements IModeloNotificacion {
         System.out.println(notificacion.getMotorEnvio());
         try {
             INotificador notificador = new NotificacionDominio();
-            if (notificacion.getMotorEnvio().equals(MotorEnvio.TwilioSMS)) {
+            if (notificacion.getMotorEnvio().equals(MotorEnvio.TwilioSMS)){
                 notificador = new NotificacionSMS(notificador);
                 notificador.notificar(notificacion);
             }

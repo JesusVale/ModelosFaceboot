@@ -5,6 +5,8 @@
 package modelos;
 
 import comunicacion.ComunicadorServidor;
+import entidades.Comentario;
+import entidades.EtiquetaUsuario;
 import interfaces.IComunicadorServidor;
 import interfaces.IComunicadorServidor;
 import entidades.Comentario;
@@ -64,16 +66,15 @@ public class ModeloPublicacion implements IModeloPublicacion {
     public Publicacion eliminar(Integer idPublicacion) throws PersistException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
+            Publicacion publicacion = this.consultar(idPublicacion);
             ModeloComentario mc = new ModeloComentario(this.conexionBD);
             for (Comentario consultarComentario : mc.consultarComentarios(idPublicacion)) {
                 mc.eliminar(consultarComentario);
             }
-            em.getTransaction().begin();
-            Publicacion publicacion = this.consultar(idPublicacion);
+
             Query query = em.createQuery("DELETE FROM Publicacion e WHERE e.id = :idPublicacion");
-            query.setParameter("idPublicacion", idPublicacion).executeUpdate();
-            this.comunicadorServidor.notificarEliminarPublicacion(publicacion);
-            em.getTransaction().commit();
+            query.setParameter("idPublicacion", publicacion.getId()).executeUpdate();
+            log.info("Eliminacion Publicacion " + publicacion.getId());
             return publicacion;
         } catch (Exception e) {
             throw new PersistException("No se pudo registrar la publicacion en la BD");
@@ -85,9 +86,14 @@ public class ModeloPublicacion implements IModeloPublicacion {
         EntityManager em = this.conexionBD.crearConexion();
         try {
             ModeloHashtag modelo = new ModeloHashtag(conexionBD);
+            ModeloEtiqueta me = new ModeloEtiqueta(conexionBD);
             if (publicacion.getHashtagPublicacion() != null) {
                 List<Hashtag> hashtagsRegistrados = modelo.registrarHashtags(publicacion.getHashtagPublicacion());
                 publicacion.setHashtagPublicacion(hashtagsRegistrados);
+            }
+            if(publicacion.getEtiquetasPublicacion() != null){
+                List<EtiquetaUsuario> etiquetasRegistradas = me.registrarEtiquetas(publicacion.getEtiquetasPublicacion());
+                publicacion.setEtiquetasPublicacion(etiquetasRegistradas);
             }
             em.getTransaction().begin();
             em.persist(publicacion);

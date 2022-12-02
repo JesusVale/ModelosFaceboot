@@ -12,7 +12,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import java.util.List;
 import jakarta.persistence.TypedQuery;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import org.apache.logging.log4j.*;
+import static utils.ConversorFechas.toLocalDate;
 /**
  *
  * @author tonyd
@@ -133,11 +136,15 @@ public class ModeloUsuario implements IModeloUsuario{
         {
             if(existeEmail(usuario)){
                throw new FacebootException("El email colocado ya esta registrado");
+           }
+            if(validarFechaNac(usuario)){
+                throw new FacebootException("El usuario debe ser mayor de edad");
             }
            em.getTransaction().begin(); //Comienza la Transacción
            em.persist(usuario); //Agrega el usuario
            em.getTransaction().commit(); //Termina Transacción
            log.info("Registro usuario "+ usuario.getNombre());
+           
            return usuario;
         }
         catch(IllegalStateException e)
@@ -157,6 +164,16 @@ public class ModeloUsuario implements IModeloUsuario{
             if(usuarioRegistrado.getEmail().equals(usuario.getEmail())){
                 return true;
             }
+        }
+        return false;
+    }
+    
+    public boolean validarFechaNac(Usuario usuario){
+        LocalDate fechaNac = toLocalDate(usuario.getFechaNacimiento());
+        LocalDate hoy = LocalDate.now();   
+        long edad = ChronoUnit.YEARS.between(fechaNac, hoy); 
+        if(edad<18){
+            return true;
         }
         return false;
     }

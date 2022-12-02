@@ -50,9 +50,13 @@ public class ModeloComentario implements IModeloComentario {
     public Comentario eliminar(Comentario comentario) throws PersistException{
         EntityManager em = this.conexionBD.crearConexion();
         try {
+<<<<<<< Updated upstream
 //            Query query = em.createQuery("DELETE e FROM Comentario e WHERE e.id= :idComentario ");
 //            query.setParameter("idComentario", comentario.);
             em.getTransaction().begin();  
+=======
+            em.getTransaction().begin();
+>>>>>>> Stashed changes
             Query query = em.createQuery("DELETE FROM Comentario e WHERE e.id = :idComentario");
             query.setParameter("idComentario", comentario.getId()).executeUpdate();
             comunicadorServidor.notificarEliminarComentario(comentario);
