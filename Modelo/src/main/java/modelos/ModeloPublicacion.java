@@ -5,7 +5,12 @@
 package modelos;
 
 import comunicacion.ComunicadorServidor;
+<<<<<<< Updated upstream
 import interfaces.IComunicadorServidor;
+=======
+import comunicacion.IComunicadorServidor;
+import entidades.Comentario;
+>>>>>>> Stashed changes
 import entidades.Hashtag;
 import entidades.Publicacion;
 import excepciones.NotFoundException;
@@ -62,11 +67,15 @@ public class ModeloPublicacion implements IModeloPublicacion {
     public Publicacion eliminar(Integer idPublicacion) throws PersistException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
-            Publicacion publicacion = this.consultar(idPublicacion);
+            ModeloComentario mc = new ModeloComentario(this.conexionBD);
+            for (Comentario consultarComentario : mc.consultarComentarios(idPublicacion)) {
+                mc.eliminar(consultarComentario);
+            }
             em.getTransaction().begin();
-            em.remove(publicacion);
+            Publicacion publicacion = this.consultar(idPublicacion);
+            Query query = em.createQuery("DELETE FROM Publicacion e WHERE e.id = :idPublicacion");
+            query.setParameter("idPublicacion", idPublicacion).executeUpdate();
             em.getTransaction().commit();
-            log.info("Eliminacion Publicacion " + publicacion.getId());
             return publicacion;
         } catch (Exception e) {
             throw new PersistException("No se pudo registrar la publicacion en la BD");

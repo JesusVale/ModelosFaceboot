@@ -7,12 +7,15 @@ package modelos;
 import comunicacion.ComunicadorServidor;
 import interfaces.IComunicadorServidor;
 import entidades.Comentario;
+import entidades.Publicacion;
+import excepciones.NotFoundException;
 import excepciones.PersistException;
 import interfaces.IConexionBD;
 import interfaces.IModeloComentario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import java.util.List;
+import java.util.logging.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,8 +52,7 @@ public class ModeloComentario implements IModeloComentario {
         try {
 //            Query query = em.createQuery("DELETE e FROM Comentario e WHERE e.id= :idComentario ");
 //            query.setParameter("idComentario", comentario.);
-            em.getTransaction().begin();
-            System.out.println("Si entró al begin");
+            em.getTransaction().begin();  
             Query query = em.createQuery("DELETE FROM Comentario e WHERE e.id = :idComentario");
             query.setParameter("idComentario", comentario.getId()).executeUpdate();
             em.getTransaction().commit();
@@ -78,11 +80,13 @@ public class ModeloComentario implements IModeloComentario {
     public List<Comentario> consultarComentarios(Integer idPublicacion) throws PersistException {
         EntityManager em = this.conexionBD.crearConexion();
         try {
-            Query query = em.createQuery("SELECT e FROM Comentario e WHERE e.publicacion= :idPublicacion ");
-            query.setParameter("idPublicacion", idPublicacion);
+            ModeloPublicacion modeloPublicacion = new ModeloPublicacion(conexionBD);
+            Publicacion publicacion = modeloPublicacion.consultar(idPublicacion);
+            Query query = em.createQuery("SELECT e FROM Comentario e WHERE e.publicacion = :idPublicacion ");
+            query.setParameter("idPublicacion", publicacion);
             return query.getResultList();
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             throw new PersistException("Error al consultar comentarios");
-        }
+        } 
     }
 }

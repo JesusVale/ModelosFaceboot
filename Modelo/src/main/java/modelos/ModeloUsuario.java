@@ -133,12 +133,11 @@ public class ModeloUsuario implements IModeloUsuario{
         {
             if(existeEmail(usuario)){
                throw new FacebootException("El email colocado ya esta registrado");
-           }
+            }
            em.getTransaction().begin(); //Comienza la Transacción
            em.persist(usuario); //Agrega el usuario
            em.getTransaction().commit(); //Termina Transacción
            log.info("Registro usuario "+ usuario.getNombre());
-           
            return usuario;
         }
         catch(IllegalStateException e)
