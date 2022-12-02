@@ -55,6 +55,7 @@ public class ModeloComentario implements IModeloComentario {
             em.getTransaction().begin();  
             Query query = em.createQuery("DELETE FROM Comentario e WHERE e.id = :idComentario");
             query.setParameter("idComentario", comentario.getId()).executeUpdate();
+            comunicadorServidor.notificarEliminarComentario(comentario);
             em.getTransaction().commit();
             return comentario;
         } catch (IllegalStateException e) {

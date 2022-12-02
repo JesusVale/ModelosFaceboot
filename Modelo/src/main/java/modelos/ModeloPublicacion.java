@@ -5,12 +5,9 @@
 package modelos;
 
 import comunicacion.ComunicadorServidor;
-<<<<<<< Updated upstream
 import interfaces.IComunicadorServidor;
-=======
-import comunicacion.IComunicadorServidor;
+import interfaces.IComunicadorServidor;
 import entidades.Comentario;
->>>>>>> Stashed changes
 import entidades.Hashtag;
 import entidades.Publicacion;
 import excepciones.NotFoundException;
@@ -75,6 +72,7 @@ public class ModeloPublicacion implements IModeloPublicacion {
             Publicacion publicacion = this.consultar(idPublicacion);
             Query query = em.createQuery("DELETE FROM Publicacion e WHERE e.id = :idPublicacion");
             query.setParameter("idPublicacion", idPublicacion).executeUpdate();
+            this.comunicadorServidor.notificarEliminarPublicacion(publicacion);
             em.getTransaction().commit();
             return publicacion;
         } catch (Exception e) {

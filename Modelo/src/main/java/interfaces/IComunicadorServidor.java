@@ -14,4 +14,6 @@ import entidades.Publicacion;
 public interface IComunicadorServidor {
     public void notificarNuevaPublicacion(Publicacion publicacion);
     public void notificarNuevoComentario(Comentario comentario);
+    public void notificarEliminarPublicacion(Publicacion publicacion);
+    public void notificarEliminarComentario(Comentario comentario);
 }

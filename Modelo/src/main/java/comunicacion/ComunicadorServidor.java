@@ -37,5 +37,17 @@ public class ComunicadorServidor implements IComunicadorServidor{
         PeticionComentario respuesta = new PeticionComentario(Eventos.registrarComentario, 200, comentario);
         Server.getInstance().notificarTodos(comentario.getUsuario().getId(), conversor.convertirObjetoString(respuesta));
     }
+
+    @Override
+    public void notificarEliminarPublicacion(Publicacion publicacion) {
+        PeticionPublicacion respuesta = new PeticionPublicacion(Eventos.eliminarPublicacion, 200, publicacion);
+        Server.getInstance().notificarTodos(publicacion.getUsuario().getId(), conversor.convertirObjetoString(respuesta));
+    }
+
+    @Override
+    public void notificarEliminarComentario(Comentario comentario) {
+        PeticionComentario respuesta = new PeticionComentario(Eventos.eliminarComentario, 200, comentario);
+        Server.getInstance().notificarTodos(comentario.getUsuario().getId(), conversor.convertirObjetoString(respuesta));
+    }
     
 }

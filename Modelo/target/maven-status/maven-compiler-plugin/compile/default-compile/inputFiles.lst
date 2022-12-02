@@ -1,25 +1,3 @@
-<<<<<<< Updated upstream
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloPublicacion.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloUsuario.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IComunicadorModeloVista.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloPublicacion.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IConexionBD.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloUsuario.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloComentario.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\SimpleJavaMail.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\comunicacion\ComunicadorServidor.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\NotificacionSMS.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\NotificacionDominio.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloNotificacion.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloNotificacion.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloHashtag.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\conexiones\ConexionBD.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloHashtag.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\DecoradorNotificacion.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloComentario.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\comunicacion\IComunicadorServidor.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\INotificador.java
-=======
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\utils\SimpleJavaMail.java
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\conexiones\ConexionBD.java
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloNotificacion.java
@@ -37,7 +15,6 @@ D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloComentari
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloHashtag.java
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloPublicacion.java
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloPublicacion.java
+D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IComunicadorServidor.java
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IComunicadorModeloVista.java
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloNotificacion.java
-D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\comunicacion\IComunicadorServidor.java
->>>>>>> Stashed changes
