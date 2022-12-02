@@ -3,7 +3,7 @@ interfaces\IModeloHashtag.class
 modelos\ModeloPublicacion.class
 utils\NotificacionDominio.class
 interfaces\INotificador.class
-comunicacion\IComunicadorServidor.class
+interfaces\IComunicadorServidor.class
 utils\SimpleJavaMail.class
 modelos\ModeloComentario.class
 conexiones\ConexionBD.class

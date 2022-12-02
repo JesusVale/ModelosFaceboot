@@ -4,6 +4,7 @@ C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de sof
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IComunicadorModeloVista.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloPublicacion.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IConexionBD.java
+C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IComunicadorServidor.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloUsuario.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\modelos\ModeloComentario.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\SimpleJavaMail.java
@@ -17,7 +18,6 @@ C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de sof
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloHashtag.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\utils\DecoradorNotificacion.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\IModeloComentario.java
-C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\comunicacion\IComunicadorServidor.java
 C:\Users\tonyd\Documents\Universidad en general\5to semestre\Arquitectura de software\Proyecto MVC\vistasFaceboot\ModelosFaceboot\Modelo\src\main\java\interfaces\INotificador.java
 =======
 D:\Proyecto MVC\ModelosFaceboot\Modelo\src\main\java\utils\SimpleJavaMail.java
