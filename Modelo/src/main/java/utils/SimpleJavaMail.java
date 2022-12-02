@@ -52,7 +52,7 @@ public class SimpleJavaMail extends DecoradorNotificacion {
             contenedor.setSubject("Notificación Faceboot");
             contenedor.setText(notificacion.getContenido());
             Transport t = session.getTransport("smtp");
-            t.connect((String) this.properties.get("mail.smtp.user"), "nxrvnfefzbrcxakc"); //Para consegir la contraseñase debe activar la verificación po 2 pasos y Agregar contraseña para Aplicación
+            t.connect((String) this.properties.get("mail.smtp.user"), "iweuucvrydutylkg"); //Para consegir la contraseñase debe activar la verificación po 2 pasos y Agregar contraseña para Aplicación
             t.sendMessage(contenedor, contenedor.getAllRecipients());
         } catch (Exception ex) {
             Logger.getLogger(SimpleJavaMail.class.getName()).log(Level.SEVERE, null, ex);
